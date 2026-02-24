@@ -1,4 +1,4 @@
 interface:
   display_name: "Skill Capability Splitter"
   short_description: "Split broad skills into atomic and workflow skills"
-  default_prompt: "Analyze a skill design and split it into atomic skills and workflow skills with clear boundaries and repository organization rules."
+  default_prompt: "Use first-principles reasoning to split a broad skill into high-quality atomic skills and workflow skills with clear boundaries, quality gates, and repository organization rules."

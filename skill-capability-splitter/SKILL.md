@@ -11,6 +11,8 @@ description: 用于设计或重构 Codex skills 时，将功能过大的单体�
 
 默认中文输出；专业术语首次出现时附英文注释。
 
+目标不是“拆得更多”，而是基于第一性原理（First Principles）拆得更对：让每个子技能在触发、方法、输出、质量判据上都更稳定。
+
 ## 适用场景
 
 1. 一个 skill 同时覆盖代码阅读、分析、报告、执行等多个步骤
@@ -18,6 +20,27 @@ description: 用于设计或重构 Codex skills 时，将功能过大的单体�
 3. 技能内容过长，导致上下文负担过重
 4. 需要建立领域技能库（如 FMT、数据分析、文档处理等）的组织结构
 5. 要为后续新增技能建立命名规范和治理规则
+
+## 第一性原理（必须遵守）
+
+在讨论目录、命名或文件结构前，先回答四个不可跳过的问题：
+
+1. 这个技能的最小任务单元是什么（irreducible unit of work）？
+2. 输入是什么、输出是什么、完成判据是什么（Definition of Done）？
+3. 哪些步骤是前置依赖，跳过会导致错误结论？
+4. 哪些步骤的方法论本质不同，必须分开？
+
+如果不能先回答这四个问题，不要进入拆分设计。
+
+## 高质量技能的设计目标（Quality Targets）
+
+拆分后的 skills 应同时优化以下指标：
+
+1. 触发准确性（Activation Precision）：问子问题时不触发整套流程
+2. 专业深度（Professional Depth）：每个子技能有明确专业方法论
+3. 可用性（Usability）：用户能快速选对技能，输出结构稳定
+4. 可维护性（Maintainability）：后续新增需求有明确落点
+5. 可验证性（Verifiability）：每个子技能有自己的完成判据
 
 ## 核心产出
 
@@ -30,8 +53,30 @@ description: 用于设计或重构 Codex skills 时，将功能过大的单体�
 5. 仓库组织方案（目录分层、命名规则、扩展规则）
 6. 迁移计划（从旧技能到新技能）
 7. 风险与防重叠策略
+8. 质量评分与改进建议（针对拆分方案本身）
 
 ## 执行流程
+
+### 0. 先生成骨架（脚本优先）
+
+优先使用脚本生成拆分方案骨架，再填充分析内容：
+
+`scripts/generate_split_plan_skeleton.py`
+
+示例：
+
+```bash
+python scripts/generate_split_plan_skeleton.py \
+  --source-skill "fmt-flight-control-param-optimizer" \
+  --domain fmt \
+  --capability "代码理解" \
+  --capability "日志解码" \
+  --capability "飞行阶段分段" \
+  --capability "控制性能分析" \
+  --capability "调参报告输出"
+```
+
+脚本生成的是“结构化起点”，不是最终答案。必须再按本技能方法补完判断依据。
 
 ### 1. 建立能力清单（Capability Inventory）
 
@@ -46,6 +91,10 @@ description: 用于设计或重构 Codex skills 时，将功能过大的单体�
 5. 专业方法（需要的领域知识/判断框架）
 6. 失败模式（常见误判/误用）
 
+并补一个“完成判据 (Definition of Done)”字段：
+
+7. 完成判据（如何判断该能力项完成）
+
 ### 2. 判断拆分边界（Boundarying）
 
 用以下维度判断是否应拆成独立 skill：
@@ -58,6 +107,8 @@ description: 用于设计或重构 Codex skills 时，将功能过大的单体�
 6. 评价标准不同（正确解码率 vs 分析解释力 vs 报告完整性）
 
 如果某能力项在上述维度有明显差异，优先拆分。
+
+若仍不确定，使用 `references/splitting-heuristics.md` 中的快速评分法辅助决策。
 
 ### 3. 设计原子技能（Atomic Skills）
 
@@ -77,6 +128,8 @@ description: 用于设计或重构 Codex skills 时，将功能过大的单体�
 4. 不负责项（不做什么）
 5. 前置依赖（如有）
 6. 标准输出结构
+7. 完成判据（Definition of Done）
+8. 质量风险（容易误用/误触发的点）
 
 ### 4. 判断是否需要编排技能（Workflow Skill）
 
@@ -93,6 +146,21 @@ description: 用于设计或重构 Codex skills 时，将功能过大的单体�
 3. 汇总跨步骤结论
 4. 引导用户在子任务场景改用原子技能
 
+编排技能不应吞掉原子技能的专业边界；它负责协调，不负责替代。
+
+### 5. 质量门禁（Quality Gates）
+
+在输出最终拆分方案前，必须做质量门禁检查：
+
+1. 第一性原理门禁：是否先定义了最小任务单元、输入/输出、完成判据
+2. 边界门禁：每个子技能是否写明“负责 / 不负责”
+3. 触发门禁：frontmatter description 是否能准确触发
+4. 复用门禁：原子技能是否可独立使用
+5. 编排门禁：workflow 是否只做顺序与质量控制
+6. 仓库门禁：新增技能是否有明确目录落点
+
+使用 `references/boundary-checklist.md` 和 `references/quality-scorecard.md` 执行检查。
+
 ## 拆分质量标准（重点）
 
 拆分后的体系应满足：
@@ -102,6 +170,7 @@ description: 用于设计或重构 Codex skills 时，将功能过大的单体�
 3. 上下文开销降低：不再加载无关流程
 4. 可扩展性提高：后续新增 skill 有明确位置
 5. 边界冲突可控：重叠能力被明确标记
+6. 质量可量化：能够给出拆分方案评分与改进点
 
 ## 常见反模式（避免）
 
@@ -125,6 +194,8 @@ description: 用于设计或重构 Codex skills 时，将功能过大的单体�
 
 优先使用 `references/output-template.md` 的结构。
 
+必须包含“第一性原理定义”和“质量评分”两个小节，否则视为不完整。
+
 如果用户还要求仓库级设计，额外包含：
 
 1. 目录分层方案（taxonomy）
@@ -144,3 +215,7 @@ description: 用于设计或重构 Codex skills 时，将功能过大的单体�
    拆分方案输出模板。
 4. `references/repo-organization-patterns.md`
    skills 仓库组织与治理模式模板。
+5. `references/first-principles-skill-design.md`
+   第一性原理视角下的 skill 设计框架。
+6. `references/quality-scorecard.md`
+   拆分方案质量评分卡（触发、边界、专业性、可用性、可维护性）。

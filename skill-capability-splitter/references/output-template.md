@@ -8,6 +8,17 @@
 - 拆分原因（3-5 条）
 - 预期收益（触发准确性、专业性、效果、维护性）
 
+## 0. 第一性原理定义（First-Principles Framing）
+
+在拆分前先定义：
+
+- 最小任务单元（irreducible unit of work）
+- 输入（Input）
+- 输出（Output）
+- 完成判据（Definition of Done）
+- 前置依赖（不可跳过步骤）
+- 高风险误用场景（Misuse Risks）
+
 ## 2. 现有技能能力清单（Capability Inventory）
 
 按能力项列出：
@@ -18,6 +29,7 @@
 - 前置依赖
 - 专业方法
 - 常见误判/风险
+- 完成判据
 
 ## 3. 拆分策略（Splitting Strategy）
 
@@ -36,6 +48,8 @@
 5. 输出产物
 6. 触发语句示例（2-3 条）
 7. 与其他技能的关系（上游/下游/并列）
+8. 完成判据（Definition of Done）
+9. 高风险误用场景与防护
 
 ## 5. 编排技能设计（Workflow Skill, 如需要）
 
@@ -66,7 +80,21 @@
 - 用户选择成本上升风险
 - 对应控制措施（编排技能、README 指南、边界声明）
 
-## 9. 下一步实施清单（Implementation Checklist）
+## 9. 质量评分（Quality Scorecard）
+
+按 1-5 分评分，并说明短板：
+
+- 触发准确性（Activation Precision）：
+- 边界清晰度（Boundary Clarity）：
+- 专业性（Professional Depth）：
+- 可用性（Usability）：
+- 可维护性（Maintainability）：
+- 可验证性（Verifiability）：
+
+总评：
+- 保留 / 重做部分拆分 / 通过
+
+## 10. 下一步实施清单（Implementation Checklist）
 
 - [ ] 初始化技能目录
 - [ ] 编写每个 skill 的 `SKILL.md`
