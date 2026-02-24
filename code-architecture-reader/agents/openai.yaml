@@ -1,0 +1,4 @@
+interface:
+  display_name: "Code Architecture Reader"
+  short_description: "通用工程代码架构解读与设计优缺点深度分析技能（中文输出）"
+  default_prompt: "阅读工程代码并用中文输出系统架构、关键链路、设计优点与缺点及改进建议；专业术语首次出现时附英文注释。"
