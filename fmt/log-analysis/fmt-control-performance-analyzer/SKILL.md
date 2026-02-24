@@ -1,63 +1,125 @@
 ---
 name: fmt-control-performance-analyzer
-description: åŸºäºŽå·²è§£ç å¹¶å®Œæˆåˆ†æ®µçš„ FMT é£žè¡Œæ—¥å¿—ï¼Œå¯¹ä¼°è®¡å™¨/FMS/Controller åˆ†å±‚è¿›è¡ŒæŽ§åˆ¶æ€§èƒ½åˆ†æžï¼Œæå–æŒ¯è¡ã€è¶…è°ƒã€å»¶è¿Ÿã€é¥±å’Œç­‰è°ƒå‚è¯æ®å¹¶å½¢æˆå€™é€‰æ ¹å› çš„ä¸“ç”¨æŠ€èƒ½ã€‚ç”¨äºŽè°ƒå‚å‰çš„è¯æ®åˆ†æžï¼Œä¸è´Ÿè´£æœ€ç»ˆæŠ¥å‘ŠæŽ’ç‰ˆæˆ– mlog è§£ç ã€‚
+description: »ùÓÚÒÑ½âÂë²¢Íê³É·Ö¶ÎµÄ FMT ·ÉÐÐÈÕÖ¾£¬¶Ô¹À¼ÆÆ÷/FMS/Controller ·Ö²ã½øÐÐ¿ØÖÆÐÔÄÜ·ÖÎö£¬ÌáÈ¡Õñµ´¡¢³¬µ÷¡¢ÑÓ³Ù¡¢±¥ºÍµÈµ÷²ÎÖ¤¾Ý²¢ÐÎ³ÉºòÑ¡¸ùÒòµÄ×¨ÓÃ¼¼ÄÜ¡£ÓÃÓÚµ÷²ÎÇ°µÄÖ¤¾Ý·ÖÎö£¬²»¸ºÔð×îÖÕ±¨¸æÅÅ°æ»ò mlog ½âÂë¡£
 ---
 
 # FMT Control Performance Analyzer
 
-## ç›®æ ‡
+## Ä¿±ê
 
-åœ¨ä¸è·³è¿‡å‰ç½®æ­¥éª¤çš„å‰æä¸‹ï¼Œç»™å‡ºâ€œçŽ°è±¡ -> è¯æ® -> å€™é€‰æ ¹å› â€çš„åˆ†å±‚æŽ§åˆ¶åˆ†æžç»“è®ºã€‚
+ÔÚ²»Ìø¹ýÇ°ÖÃ²½ÖèµÄÇ°ÌáÏÂ£¬¸ø³ö¡°ÏÖÏó -> Ö¤¾Ý -> ºòÑ¡¸ùÒò¡±µÄ·Ö²ã¿ØÖÆ·ÖÎö½áÂÛ¡£
 
-## å‰ç½®è¾“å…¥ï¼ˆå»ºè®®ï¼‰
+## µÚÒ»ÐÔÔ­ÀíÈÎÎñ¶¨Òå£¨First-Principles Task Definition£©
 
-1. å·²è§£ç æ—¥å¿—æ•°æ®ï¼ˆç»“æž„åŒ–ï¼‰
-2. å·²å®Œæˆé£žè¡Œé˜¶æ®µåˆ†æ®µä¸Žå…³é”®äº‹ä»¶ç´¢å¼•
-3. æœºåž‹å˜ä½“ä¿¡æ¯ï¼ˆ`vtol` / `mc` / `fw`ï¼‰
-4. å½“å‰å‚æ•°å¿«ç…§ï¼ˆæ¥è‡ª `mlog` header æˆ–ç‹¬ç«‹å¯¼å‡ºï¼‰
+1. ×îÐ¡ÈÎÎñµ¥Ôª£¨Minimum Task Unit£©
+   - ÔÚÒÑÍê³É½âÂëÓë·Ö¶ÎµÄµ¥´Î·ÉÐÐÈÕÖ¾·¶Î§ÄÚ£¬¶Ô¿ØÖÆ±íÏÖ½øÐÐ·Ö²ã£¨INS/FMS/Controller/Actuator£©·ÖÎö£¬ÐÎ³ÉÖ¤¾Ý»¯ÏÖÏóÓëºòÑ¡¸ùÒò¡£
+2. ºËÐÄÊäÈë£¨Inputs£©
+   - ÒÑ½âÂë½á¹¹»¯ÈÕÖ¾Êý¾Ý
+   - ·ÉÐÐ½×¶Î·Ö¶ÎÓë¹Ø¼üÊÂ¼þË÷Òý
+   - »úÐÍ±äÌåÓë²ÎÊý¿ìÕÕ£¨È±Ê§Ê±ÐèÏÔÊ½½µ¼¶£©
+3. ºËÐÄÊä³ö£¨Outputs£©
+   - Ö÷½»¸¶¹¤¼þ£º`control_performance_findings`
+   - ÏÖÏóÇåµ¥¡¢Ö¤¾ÝÁ´¡¢ºòÑ¡¸ùÒò·Ö²ã¡¢ºòÑ¡²ÎÊý·½Ïò£¨directional only£©
+   - ÏÂÓÎ±¨¸æ×«Ð´ËùÐèµÄÓÅÏÈ¼¶¡¢ÖÃÐÅ¶ÈÓë´ýÑéÖ¤Ïî
+4. Íê³ÉÅÐ¾Ý£¨Definition of Done, DoD£©
+   - ÖÁÉÙÐÎ³ÉÒ»Ìõ¡°ÏÖÏó -> Ö¤¾Ý -> ºòÑ¡¸ùÒò¡±Á´Ìõ
+   - Çø·Ö×´Ì¬»úÇÐ»»Ë²Ì¬Óë¿ØÖÆÆ÷ÐÔÄÜÎÊÌâ
+   - ÔÚÈ±Ê§²ÎÊý¿ìÕÕÊ±²»Êä³ö¾ßÌå²ÎÊýÖµÐÞ¸ÄÁ¿
+5. Êä³öÓïÑÔÔ¼¶¨£¨Language Convention£©
+   - Ä¬ÈÏÖÐÎÄÊä³ö£»×¨ÒµÊõÓïÊ×´Î³öÏÖ¸½Ó¢ÎÄ×¢ÊÍ£¨English Annotation£©¡£
+   - ±£Áô²ÎÊýÃû¡¢ÐÅºÅÃû¡¢½á¹¹ÌåÃû¡¢º¯ÊýÃûÔ­ÎÄ£¬±ÜÃâ·­ÒëÔì³ÉÆçÒå¡£
 
-## èšç„¦èŒƒå›´ï¼ˆåªåšè¿™äº›ï¼‰
+## Ç°ÖÃÊäÈë£¨½¨Òé£©
 
-1. ä¼°è®¡å™¨ä¾§ä¸ŽæŽ§åˆ¶å™¨ä¾§é—®é¢˜åˆ†ç¦»ï¼ˆEstimator vs Controllerï¼‰
-2. çŠ¶æ€æœºåˆ‡æ¢çž¬æ€ä¸ŽæŽ§åˆ¶æ€§èƒ½é—®é¢˜åŒºåˆ†
-3. è·Ÿè¸ªè¯¯å·®ã€è¶…è°ƒã€æŒ¯è¡ã€ç¨³æ€è¯¯å·®ã€é¥±å’Œç­‰çŽ°è±¡åˆ†æž
-4. å€™é€‰è°ƒå‚æ–¹å‘çš„è¯æ®æå–ï¼ˆä¸æ˜¯æœ€ç»ˆå»ºè®®ï¼‰
+1. ÒÑ½âÂëÈÕÖ¾Êý¾Ý£¨½á¹¹»¯£©
+2. ÒÑÍê³É·ÉÐÐ½×¶Î·Ö¶ÎÓë¹Ø¼üÊÂ¼þË÷Òý
+3. »úÐÍ±äÌåÐÅÏ¢£¨`vtol` / `mc` / `fw`£©
+4. µ±Ç°²ÎÊý¿ìÕÕ£¨À´×Ô `mlog` header »ò¶ÀÁ¢µ¼³ö£©
 
-## ä¸è´Ÿè´£
+## ¾Û½¹·¶Î§£¨Ö»×öÕâÐ©£©
 
-1. mlog äºŒè¿›åˆ¶è§£ç 
-2. é£žè¡Œé˜¶æ®µåˆ†æ®µ
-3. æœ€ç»ˆæŠ¥å‘Šä¸Žè¯•é£žè®¡åˆ’ç¼–å†™
+1. ¹À¼ÆÆ÷²àÓë¿ØÖÆÆ÷²àÎÊÌâ·ÖÀë£¨Estimator vs Controller£©
+2. ×´Ì¬»úÇÐ»»Ë²Ì¬Óë¿ØÖÆÐÔÄÜÎÊÌâÇø·Ö
+3. ¸ú×ÙÎó²î¡¢³¬µ÷¡¢Õñµ´¡¢ÎÈÌ¬Îó²î¡¢±¥ºÍµÈÏÖÏó·ÖÎö
+4. ºòÑ¡µ÷²Î·½ÏòµÄÖ¤¾ÝÌáÈ¡£¨²»ÊÇ×îÖÕ½¨Òé£©
 
-## åˆ†æžæ¡†æž¶ï¼ˆå»ºè®®é¡ºåºï¼‰
+## ²»¸ºÔð
 
-1. å…ˆçœ‹æ•°æ®è´¨é‡ä¸Žä¼°è®¡å™¨å¥åº·ï¼ˆINS æœ‰æ•ˆæ€§ã€è·³å˜ã€å»¶è¿Ÿï¼‰
-2. å†çœ‹ FMS æ¨¡å¼åˆ‡æ¢æ˜¯å¦å¼•å…¥å‘½ä»¤çªå˜
-3. æœ€åŽçœ‹ Controller è¾“å‡ºä¸Žæ‰§è¡Œå™¨è¡¨çŽ°ï¼ˆå«é¥±å’Œã€é™å¹…ï¼‰
+1. mlog ¶þ½øÖÆ½âÂë
+2. ·ÉÐÐ½×¶Î·Ö¶Î
+3. ×îÖÕ±¨¸æÓëÊÔ·É¼Æ»®±àÐ´
 
-## å…¸åž‹è¾“å‡ºç»“æž„
+## ·ÖÎö¿ò¼Ü£¨½¨ÒéË³Ðò£©
 
-1. çŽ°è±¡æ¸…å•ï¼ˆæŒ‰ä¸¥é‡åº¦ï¼‰
-2. æ¯ä¸ªçŽ°è±¡çš„è¯æ®ï¼š
-   - æ—¶é—´æ®µ
-   - ç›¸å…³ä¿¡å·
-   - ä¸Žé˜¶æ®µ/æ¨¡å¼çš„å…³ç³»
-3. å€™é€‰æ ¹å› åˆ†å±‚ï¼š
-   - ä¼°è®¡å™¨ / çŠ¶æ€æœº / æŽ§åˆ¶å™¨ / æ‰§è¡Œå™¨ / ä¼ æ„Ÿå™¨
-4. å€™é€‰å‚æ•°ç»„ï¼ˆä»…æŒ‡å‡ºèŒƒå›´ï¼Œä¸ç›´æŽ¥ä¸‹æœ€ç»ˆæ”¹å€¼ï¼‰
+1. ÏÈ¿´Êý¾ÝÖÊÁ¿Óë¹À¼ÆÆ÷½¡¿µ£¨INS ÓÐÐ§ÐÔ¡¢Ìø±ä¡¢ÑÓ³Ù£©
+2. ÔÙ¿´ FMS Ä£Ê½ÇÐ»»ÊÇ·ñÒýÈëÃüÁîÍ»±ä
+3. ×îºó¿´ Controller Êä³öÓëÖ´ÐÐÆ÷±íÏÖ£¨º¬±¥ºÍ¡¢ÏÞ·ù£©
 
-## è¾“å‡ºè¦æ±‚
+## µäÐÍÊä³ö½á¹¹
 
-è‡³å°‘åŒ…å«ï¼š
+1. ÏÖÏóÇåµ¥£¨°´ÑÏÖØ¶È£©
+2. Ã¿¸öÏÖÏóµÄÖ¤¾Ý£º
+   - Ê±¼ä¶Î
+   - Ïà¹ØÐÅºÅ
+   - Óë½×¶Î/Ä£Ê½µÄ¹ØÏµ
+3. ºòÑ¡¸ùÒò·Ö²ã£º
+   - ¹À¼ÆÆ÷ / ×´Ì¬»ú / ¿ØÖÆÆ÷ / Ö´ÐÐÆ÷ / ´«¸ÐÆ÷
+4. ºòÑ¡²ÎÊý×é£¨½öÖ¸³ö·¶Î§£¬²»Ö±½ÓÏÂ×îÖÕ¸ÄÖµ£©
 
-1. åˆ†å±‚åˆ†æžç»“è®ºï¼ˆINS/FMS/Controllerï¼‰
-2. å…³é”®çŽ°è±¡ä¸Žè¯æ®è¡¨
-3. å€™é€‰æ ¹å› åˆ—è¡¨ï¼ˆå«ç½®ä¿¡åº¦ï¼‰
-4. å€™é€‰å‚æ•°èŒƒå›´ï¼ˆ`CONTROL` / `FMS` / `INS`ï¼‰
-5. éœ€è¦è¡¥å……çš„æ•°æ®/è¯•éªŒï¼ˆå¦‚æ— æ³•å®šæ€§ï¼‰
+## Êä³öÒªÇó
 
-## çºªå¾‹çº¦æŸ
+ÖÁÉÙ°üº¬£º
 
-1. æ²¡æœ‰å‰ç½®åˆ†æ®µå°±ä¸è¦ç›´æŽ¥ç»™å…¨å±€ç»“è®ºã€‚
-2. é¿å…å°†çŠ¶æ€æœºåˆ‡æ¢çž¬æ€è¯¯åˆ¤ä¸ºæŽ§åˆ¶å™¨å¢žç›Šé—®é¢˜ã€‚
-3. é¿å…åœ¨ç¼ºå¤±å‚æ•°å¿«ç…§æ—¶ç»™å…·ä½“å‚æ•°å€¼å»ºè®®ã€‚
+1. ·Ö²ã·ÖÎö½áÂÛ£¨INS/FMS/Controller£©
+2. ¹Ø¼üÏÖÏóÓëÖ¤¾Ý±í
+3. ºòÑ¡¸ùÒòÁÐ±í£¨º¬ÖÃÐÅ¶È£©
+4. ºòÑ¡²ÎÊý·¶Î§£¨`CONTROL` / `FMS` / `INS`£©
+5. ÐèÒª²¹³äµÄÊý¾Ý/ÊÔÑé£¨ÈçÎÞ·¨¶¨ÐÔ£©
+
+## ÉÏÏÂÓÎ½»½Ó£¨Artifact Handoff£©
+
+1. ÉÏÓÎÒÀÀµ£¨Upstream Dependencies£©
+   - `fmt-mlog-decoder`
+   - `fmt-flight-log-segmenter`
+   - `fmt-fms-state-machine-reader`£¨ÍÆ¼ö£©
+2. ÏÂÓÎÊ¹ÓÃ·½£¨Downstream Consumers£©
+   - `fmt-tuning-report-writer`
+   - `fmt-flight-control-param-optimizer`
+3. Ö÷½»¸¶¹¤¼þ£¨Primary Artifact£©
+   - `control_performance_findings`
+   - ¹¤¼þÖÁÉÙ°üº¬£º·ÖÎö·¶Î§£¨scope£©¡¢¹Ø¼üÊÂÊµ£¨facts£©¡¢¹Ø¼üÍÆ¶Ï£¨inferences£©¡¢Ö¤¾ÝË÷Òý£¨evidence index£©¡¢È±¿ÚÇåµ¥£¨gaps£©¡¢ÏÂÓÎÊäÈë½¨Òé£¨next skill inputs£©¡£
+4. ¹²Ïí¹æ·¶£¨Shared Contracts£©
+   - ²Î¿¼ `fmt/_meta/first-principles-skill-contract.md`
+   - ²Î¿¼ `fmt/_meta/artifact-handoff-contract.md`
+
+## ÖÊÁ¿ÃÅ½û£¨Quality Gates£©
+
+1. ±Ø¹ýÃÅ½û£¨Mandatory Gates£©
+   - ±ß½çÃÅ½û£¨Boundary Purity£©£º²»Êä³ö³¬³ö±¾¼¼ÄÜÖ°ÔðµÄÈ·¶¨ÐÔ½áÂÛ¡£
+   - Ö¤¾ÝÃÅ½û£¨Evidence Traceability£©£º¹Ø¼ü½áÂÛ±ØÐëÄÜ»ØÁ´µ½´úÂëÂ·¾¶ÐÐºÅ»òÈÕÖ¾Ê±¼ä¶Î¡£
+   - ±äÌåÃÅ½û£¨Variant Scope£©£ºÃ÷È· `vtol/mc/fw` ÊÊÓÃ·¶Î§£¬Î´ÖªÊ±±ê×¢ `unknown`¡£
+   - ½»½ÓÃÅ½û£¨Handoff Usability£©£ºÊä³ö¿É±»ÏÂÓÎ¼¼ÄÜÖ±½ÓÏû·Ñ£¬²»Ö»¸øÉ¢ÎÄÊ½ÃèÊö¡£
+   - ¹éÒòÃÅ½û£ºÃ»ÓÐ·Ö¶Î»òÄ£Ê½ÉÏÏÂÎÄÊ±£¬²»¸øÈ«¾Ö¿ØÖÆÆ÷ÔöÒæ¹éÒò½áÂÛ¡£
+2. ×Ô¼ì½¨Òé£¨Self Check£©
+   - ¿ÉÊ¹ÓÃ `fmt/_meta/quality-scorecard.md` ¶Ô±¾´ÎÊä³ö½øÐÐ¿ìËÙ´ò·Ö£¨ÖÁÉÙ¼ì²é IO ÆõÔ¼¡¢Ö¤¾Ý¡¢½µ¼¶²ßÂÔ£©¡£
+
+## Ê§°ÜÓë½µ¼¶²ßÂÔ£¨Failure / Fallback£©
+
+1. ÊäÈë²»×ã´¦Àí
+   - È±Ê§²ÎÊý¿ìÕÕ£ºÖ»¸ø·½Ïò¼¶ºòÑ¡²ÎÊý×éÓëÑéÖ¤½¨Òé
+   - ¹Ø¼üÐÅºÅÈ±Ê§£ºÏÈ¸øÊý¾ÝÈ±¿Úµ¼ÖÂµÄ·ÖÎöÃ¤Çø£¬ÔÙÊä³ö¿ÉÈ·ÈÏµÄ¾Ö²¿ÏÖÏó
+2. Êä³ö½µ¼¶ÒªÇó
+   - ½µ¼¶Êä³öÊ±±ØÐëÏÔÊ½±ê×¢ÊÜÓ°Ïì½áÂÛ¡¢ÊÜÓ°Ïì·¶Î§ÓëÖÃÐÅ¶È±ä»¯¡£
+   - ½µ¼¶²»µÈÓÚÌø²½£»²»µÃÔ½¹ý±¾¼¼ÄÜÖ°ÔðÖ±½Ó¸øÏÂÓÎ×îÖÕ½áÂÛ¡£
+
+## references/ Ê¹ÓÃ½¨Òé
+
+1. ¿ìËÙÊä³öÊ±£¬ÏÈ¼ÓÔØ `references/output-template.md` ×÷Îª¹Ç¼Ü£¬±ÜÃâÒÅÂ©½»½Ó×Ö¶Î¡£
+2. ÕýÊ½½»¸¶Ç°£¬¼ÓÔØ `references/checklist.md` ×ö±ß½ç¡¢Ö¤¾Ý¡¢½µ¼¶²ßÂÔ¸´ºË¡£
+3. ×¨ÏîÌáÊ¾£º½øÐÐÐÔÄÜ·ÖÎöÊ±ÏÈ°´Ä£°å×éÖ¯Ö¤¾ÝÁ´£»½»¸¶¸ø±¨¸æ¼¼ÄÜÇ°ÓÃÇåµ¥¼ì²é¹éÒò±ß½çºÍÖÃÐÅ¶È±ê×¢¡£
+
+## ¼ÍÂÉÔ¼Êø
+
+1. Ã»ÓÐÇ°ÖÃ·Ö¶Î¾Í²»ÒªÖ±½Ó¸øÈ«¾Ö½áÂÛ¡£
+2. ±ÜÃâ½«×´Ì¬»úÇÐ»»Ë²Ì¬ÎóÅÐÎª¿ØÖÆÆ÷ÔöÒæÎÊÌâ¡£
+3. ±ÜÃâÔÚÈ±Ê§²ÎÊý¿ìÕÕÊ±¸ø¾ßÌå²ÎÊýÖµ½¨Òé¡£

@@ -36,10 +36,12 @@
 
 1. 先判断是“原子技能”还是“编排技能”
 2. 检查是否与已有技能职责重叠
-3. 写清输入/输出边界（尤其是前置数据依赖）
-4. 只在该 skill 内放必要知识；详细模板放 `references/`
-5. 校验结构（`quick_validate.py`）
-6. 在 `fmt/README.md` 更新目录与使用时机
+3. 按第一性原理写清最小任务单元、完成判据（DoD）、失败/降级策略
+4. 写清输入/输出边界（尤其是前置数据依赖）与交接工件（Artifact）
+5. 对齐共享规范（`fmt/_meta/first-principles-skill-contract.md`、`fmt/_meta/artifact-handoff-contract.md`）
+6. 只在该 skill 内放必要知识；详细模板放 `references/`
+7. 校验结构（`quick_validate.py`）
+8. 在 `fmt/README.md` 更新目录与使用时机
 
 ## 3. 何时新增新 Skill，何时扩展旧 Skill
 
@@ -93,6 +95,15 @@
 1. `fmt/README.md`（技能目录与使用时机）
 2. 对应 skill 的 `SKILL.md`
 3. （如适用）对应 skill 的 `references/`
+4. （如修改了通用规则）`fmt/_meta/*.md`
+
+### 5.4 批量一致性维护（推荐）
+
+当你批量优化原子技能（例如统一增加门禁、交接字段、语言约定）时，优先使用脚本化维护，减少手工漂移：
+
+1. 使用 `fmt/_meta/scripts/refresh_atomic_skill_contracts.py` 统一刷新原子技能契约块
+2. 运行后逐个抽样检查（至少代码阅读类/日志分析类各 1 个）
+3. 再执行 `quick_validate.py` 全量校验
 
 ### 5.3 弃用（Deprecation）规则
 
@@ -125,6 +136,7 @@
 
 1. 描述能准确触发（写清何时使用）
 2. 边界清晰（写清不负责什么）
-3. 输出结构明确
-4. 至少一个专业检查点（不是泛泛流程）
-5. 校验通过（`quick_validate.py`）
+3. 输入/输出与交接工件明确（下游可复用）
+4. 明确失败与降级策略（输入不足时不跳步）
+5. 至少一个专业检查点（不是泛泛流程）
+6. 校验通过（`quick_validate.py`）

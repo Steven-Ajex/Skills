@@ -83,3 +83,36 @@ Copy-Item -Recurse -Force .\fmt\workflows\fmt-flight-control-param-optimizer $HO
 
 - `fmt/_meta/split-analysis.md`
 - `fmt/_meta/repo-management.md`
+- `fmt/_meta/first-principles-skill-contract.md`
+- `fmt/_meta/artifact-handoff-contract.md`
+- `fmt/_meta/quality-scorecard.md`
+
+## 优化现有 Skill 的建议顺序（第一性原理）
+
+当你要优化已有 FMT skill 时，建议按下面顺序进行（不要一开始就堆模板）：
+
+1. 收紧边界：先明确“做什么 / 不做什么 / 何时不该触发”
+2. 定义最小任务单元（Minimum Task Unit）与完成判据（DoD）
+3. 补输入输出契约（尤其是下游可复用的交接工件）
+4. 加质量门禁（Quality Gates）与失败降级策略
+5. 最后再扩展模板、示例、脚本
+
+## FMT Skill 交接工件（Artifact）约定
+
+`fmt/` 下技能推荐使用统一工件交接方式，便于组合：
+
+1. 原子技能产出本技能专属工件（例如 `control_loop_map`、`flight_phase_segments`）
+2. 工件至少包含：范围、事实、推断、证据索引、缺口、下游输入建议
+3. 编排技能只基于工件做阶段门禁和汇总，不绕开原子技能边界
+
+详细约定见：
+
+- `fmt/_meta/artifact-handoff-contract.md`
+
+## 批量维护（推荐）
+
+当你需要统一优化多个 FMT 原子技能（例如同步补充质量门禁、交接字段、语言约定）时，可使用：
+
+- `fmt/_meta/scripts/refresh_atomic_skill_contracts.py`
+
+使用后再执行全量 `quick_validate.py` 校验。

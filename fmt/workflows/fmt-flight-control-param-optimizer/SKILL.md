@@ -1,87 +1,148 @@
 ---
 name: fmt-flight-control-param-optimizer
-description: é¢å‘ FMT-Firmware çš„ç«¯åˆ°ç«¯é£žæŽ§å‚æ•°ä¼˜åŒ–ç¼–æŽ’æŠ€èƒ½ï¼Œç”¨äºŽåœ¨ä¸€ä¸ªä»»åŠ¡ä¸­åè°ƒä»£ç ç†è§£ã€æ—¥å¿—é“¾è·¯ç†è§£ã€`mlog` è§£ç ã€é£žè¡Œé˜¶æ®µåˆ†æ®µã€æŽ§åˆ¶æ€§èƒ½åˆ†æžä¸Žè°ƒå‚æŠ¥å‘Šè¾“å‡ºã€‚é€‚ç”¨äºŽéœ€è¦å®Œæ•´æµç¨‹è€Œéžå•ç‚¹èƒ½åŠ›çš„åœºæ™¯ï¼›è‹¥åªéœ€å­ä»»åŠ¡ï¼Œä¼˜å…ˆä½¿ç”¨ `fmt/` ç›®å½•ä¸‹å¯¹åº”åŽŸå­æŠ€èƒ½ã€‚
+description: ÃæÏò FMT-Firmware µÄ¶Ëµ½¶Ë·É¿Ø²ÎÊýÓÅ»¯±àÅÅ¼¼ÄÜ£¬ÓÃÓÚÔÚÒ»¸öÈÎÎñÖÐÐ­µ÷´úÂëÀí½â¡¢ÈÕÖ¾Á´Â·Àí½â¡¢`mlog` ½âÂë¡¢·ÉÐÐ½×¶Î·Ö¶Î¡¢¿ØÖÆÐÔÄÜ·ÖÎöÓëµ÷²Î±¨¸æÊä³ö¡£ÊÊÓÃÓÚÐèÒªÍêÕûÁ÷³Ì¶ø·Çµ¥µãÄÜÁ¦µÄ³¡¾°£»ÈôÖ»Ðè×ÓÈÎÎñ£¬ÓÅÏÈÊ¹ÓÃ `fmt/` Ä¿Â¼ÏÂ¶ÔÓ¦Ô­×Ó¼¼ÄÜ¡£
 ---
 
 # FMT Flight Control Param Optimizer (Workflow)
 
-## è§’è‰²å®šä½
+## ½ÇÉ«¶¨Î»
 
-è¿™æ˜¯ç¼–æŽ’åž‹æŠ€èƒ½ï¼ˆworkflow skillï¼‰ï¼Œè´Ÿè´£å†³å®šæ­¥éª¤é¡ºåºã€æ£€æŸ¥å‰ç½®æ¡ä»¶ã€æ±‡æ€»ç»“è®ºã€‚
+ÕâÊÇ±àÅÅÐÍ¼¼ÄÜ£¨workflow skill£©£¬¸ºÔð¾ö¶¨²½ÖèË³Ðò¡¢¼ì²éÇ°ÖÃÌõ¼þ¡¢»ã×Ü½áÂÛ¡£
 
-å®ƒä¸åº”æ›¿ä»£æ‰€æœ‰åŽŸå­æŠ€èƒ½çš„ä¸“ä¸šåˆ¤æ–­ï¼›åœ¨æ‰§è¡Œä¸­ä¼˜å…ˆè°ƒç”¨åŽŸå­æŠ€èƒ½çš„æ€ç»´è¾¹ç•Œã€‚
+Ëü²»Ó¦Ìæ´úËùÓÐÔ­×Ó¼¼ÄÜµÄ×¨ÒµÅÐ¶Ï£»ÔÚÖ´ÐÐÖÐÓÅÏÈµ÷ÓÃÔ­×Ó¼¼ÄÜµÄË¼Î¬±ß½ç¡£
 
-## åŽŸå­æŠ€èƒ½ç¼–æŽ’é¡ºåºï¼ˆé»˜è®¤ï¼‰
+Ä¬ÈÏÓÃÖÐÎÄÊä³ö£»×¨ÒµÊõÓïÊ×´Î³öÏÖ¸½Ó¢ÎÄ×¢ÊÍ¡£
 
-ä»£ç ç†è§£å±‚ï¼š
+## µÚÒ»ÐÔÔ­Àí¹¤×÷Á÷¶¨Òå£¨First-Principles Workflow Definition£©
+
+1. ×îÐ¡ÈÎÎñµ¥Ôª£¨Minimum Task Unit£©
+   - ÔÚ¸ø¶¨Ò»´ÎÈÎÎñÊäÈë£¨´úÂë¡¢ÈÕÖ¾»ò¶þÕß£©ÏÂ£¬Íê³ÉÒ»ÂÖ¡°¿ÉÖ¤¾Ý»ØÁ´¡±µÄ FMT µ÷²Î·ÖÎö±Õ»·»ò½×¶ÎÐÔ±Õ»·£¨´úÂë²à±Õ»· / ÈÕÖ¾²à±Õ»·£©¡£
+2. ºËÐÄÊäÈë£¨Inputs£©
+   - »úÐÍ±äÌå£¨`vtol` / `mc` / `fw`£©Óë·ÖÎö¶ÔÏó°æ±¾/·ÖÖ§
+   - ´úÂë¹¤³ÌÂ·¾¶£¨ÖÁÉÙ `FMT-Firmware` ¿É¶Á£©
+   - Êµ·ÉÈÕÖ¾»òÒÑ½âÂë½á¹¹»¯Êý¾Ý£¨ÈçÓÐ£©
+   - ÈÎÎñÄ¿±êÓëÏÖÏóÃèÊö£¨ÀýÈç×ËÌ¬Õñµ´¡¢¹ý¶É¶Î³¬µ÷¡¢½µÂä¶¶¶¯£©
+3. ºËÐÄÊä³ö£¨Outputs£©
+   - ½×¶Î¹¤¼þÇåµ¥£¨ÉÏÓÎÔ­×Ó¼¼ÄÜ²úÎï£©
+   - ±àÅÅ»ã×Ü½áÂÛ£¨´úÂëÀí½âÕªÒª¡¢ÈÕÖ¾·ÖÎöÕªÒª¡¢µ÷²Î½¨Òé¡¢ÑéÖ¤¼Æ»®£©
+   - È±¿ÚÇåµ¥£¨Gap List£©ÓëÏÂÒ»²½ÐèÒªµÄÊý¾Ý/ÊÔÑé
+4. Íê³ÉÅÐ¾Ý£¨Definition of Done, DoD£©
+   - ÒÑÃ÷È·Ö´ÐÐµ½ÄÄ¸ö½×¶Î¡¢ÄÄÐ©½×¶Î±»Ìø¹ýÒÔ¼°Ô­Òò
+   - ËùÓÐ×îÖÕ½¨Òé¾ù»ØÁ´µ½´úÂëÖ¤¾Ý»òÈÕÖ¾Ö¤¾Ý£¨Í¨¹ýÉÏÓÎ¹¤¼þ£©
+   - Ã÷È·Çø·ÖÊÂÊµ£¨Fact£©¡¢ÍÆ¶Ï£¨Inference£©Óë´ýÑéÖ¤Ïî£¨To Validate£©
+   - Èç¹ûÊäÈë²»×ãÒÔÖ§³Öµ÷²Î½¨Òé£¬Í£Ö¹ÔÚÖ¤¾Ý·ÖÎö½×¶Î²¢Êä³ö×è¶ÏÈ±¿Ú
+
+## ¹¤¼þÇåµ¥Óë½»½ÓÔ¼Êø£¨Artifact Handoff£©
+
+±àÅÅ¼¼ÄÜ²»Ö±½Ó¡°ÖØ×ö¡±Ô­×Ó·ÖÎö£¬ÓÅÏÈÏû·ÑÒÔÏÂ¹¤¼þ£¨¿É²¿·Ö´æÔÚ£©£º
+
+1. `control_loop_map`
+2. `mbd_boundary_map`
+3. `fms_state_semantics`
+4. `logging_pipeline_map`
+5. `mlog_decode_summary`£¨ÒÔ¼°½á¹¹»¯Êý¾ÝÒýÓÃ£©
+6. `flight_phase_segments`
+7. `control_performance_findings`
+8. `tuning_recommendation_report`£¨×îÖÕ½×¶Î£©
+
+½»½Ó×îµÍ×Ö¶ÎºÍÃÅ½û¼ì²é²Î¿¼£º
+
+1. `fmt/_meta/artifact-handoff-contract.md`
+2. `fmt/_meta/first-principles-skill-contract.md`
+
+## Ô­×Ó¼¼ÄÜ±àÅÅË³Ðò£¨Ä¬ÈÏ£©
+
+´úÂëÀí½â²ã£º
 
 1. `fmt-control-loop-reader`
 2. `fmt-mbd-interface-reader`
-3. `fmt-fms-state-machine-reader`ï¼ˆå¦‚ä»»åŠ¡æ¶‰åŠæ¨¡å¼åˆ‡æ¢/VTOL è¿‡æ¸¡ï¼‰
+3. `fmt-fms-state-machine-reader`£¨ÈçÈÎÎñÉæ¼°Ä£Ê½ÇÐ»»/VTOL ¹ý¶É£©
 4. `fmt-logging-pipeline-reader`
 
-æ—¥å¿—åˆ†æžå±‚ï¼š
+ÈÕÖ¾·ÖÎö²ã£º
 
 5. `fmt-mlog-decoder`
 6. `fmt-flight-log-segmenter`
 7. `fmt-control-performance-analyzer`
 8. `fmt-tuning-report-writer`
 
-## è¾“å…¥åœºæ™¯å†³ç­–
+## ÊäÈë³¡¾°¾ö²ß
 
-### åœºæ™¯ Aï¼šåªæœ‰ä»£ç ï¼Œæ²¡æœ‰å®žé£žæ—¥å¿—
+### ³¡¾° A£ºÖ»ÓÐ´úÂë£¬Ã»ÓÐÊµ·ÉÈÕÖ¾
 
-æ‰§è¡Œåˆ°ç¬¬ 4 æ­¥åœæ­¢ï¼Œè¾“å‡ºï¼š
+Ö´ÐÐµ½µÚ 4 ²½Í£Ö¹£¬Êä³ö£º
 
-1. æŽ§åˆ¶ç»“æž„ç†è§£ç»“è®º
-2. æ—¥å¿—é“¾è·¯ç†è§£ç»“è®º
-3. åŽç»­éœ€è¦é‡‡é›†/æä¾›çš„æ—¥å¿—æ¸…å•
+1. ¿ØÖÆ½á¹¹Àí½â½áÂÛ
+2. ÈÕÖ¾Á´Â·Àí½â½áÂÛ
+3. ºóÐøÐèÒª²É¼¯/Ìá¹©µÄÈÕÖ¾Çåµ¥
 
-### åœºæ™¯ Bï¼šæœ‰æ—¥å¿—ï¼Œä½†ä»£ç ç†è§£ä¸å®Œæ•´
+### ³¡¾° B£ºÓÐÈÕÖ¾£¬µ«´úÂëÀí½â²»ÍêÕû
 
-è‡³å°‘å…ˆå®Œæˆï¼š
+ÖÁÉÙÏÈÍê³É£º
 
 1. `fmt-control-loop-reader`
 2. `fmt-mbd-interface-reader`
 3. `fmt-logging-pipeline-reader`
 
-å†å¼€å§‹æ—¥å¿—åˆ†æžï¼Œé¿å…è¯¯åˆ¤ã€‚
+ÔÙ¿ªÊ¼ÈÕÖ¾·ÖÎö£¬±ÜÃâÎóÅÐ¡£
 
-### åœºæ™¯ Cï¼šå·²æœ‰è§£ç ç»“æžœå’Œåˆ†æ®µç»“æžœ
+### ³¡¾° C£ºÒÑÓÐ½âÂë½á¹ûºÍ·Ö¶Î½á¹û
 
-ç›´æŽ¥ä»Žï¼š
+Ö±½Ó´Ó£º
 
 1. `fmt-control-performance-analyzer`
 2. `fmt-tuning-report-writer`
 
-å¼€å§‹ï¼Œä½†å…ˆéªŒè¯è¾“å…¥å®Œæ•´æ€§ã€‚
+¿ªÊ¼£¬µ«ÏÈÑéÖ¤ÊäÈëÍêÕûÐÔ¡£
 
-## ç¼–æŽ’è§„åˆ™ï¼ˆè´¨é‡æŽ§åˆ¶ï¼‰
+## ±àÅÅ¹æÔò£¨ÖÊÁ¿¿ØÖÆ£©
 
-1. ä¸å…è®¸è·³è¿‡ `mlog` è§£ç ç›´æŽ¥åšæ€§èƒ½åˆ†æžï¼ˆé™¤éžç”¨æˆ·å·²æä¾›ç»“æž„åŒ–æ•°æ®ï¼‰ã€‚
-2. ä¸å…è®¸è·³è¿‡é£žè¡Œé˜¶æ®µåˆ†æ®µç›´æŽ¥ç»™å…¨å±€è°ƒå‚å»ºè®®ã€‚
-3. ä¸å…è®¸åœ¨æœªç¡®è®¤æœºåž‹å˜ä½“æ—¶æ··ç”¨ `vtol/mc/fw` ç»“è®ºã€‚
-4. æ‰€æœ‰æœ€ç»ˆå»ºè®®å¿…é¡»å›žé“¾åˆ°è¯æ®ï¼ˆä»£ç ä½ç½®æˆ–æ—¥å¿—æ—¶é—´æ®µï¼‰ã€‚
+1. ²»ÔÊÐíÌø¹ý `mlog` ½âÂëÖ±½Ó×öÐÔÄÜ·ÖÎö£¨³ý·ÇÓÃ»§ÒÑÌá¹©½á¹¹»¯Êý¾Ý£©¡£
+2. ²»ÔÊÐíÌø¹ý·ÉÐÐ½×¶Î·Ö¶ÎÖ±½Ó¸øÈ«¾Öµ÷²Î½¨Òé¡£
+3. ²»ÔÊÐíÔÚÎ´È·ÈÏ»úÐÍ±äÌåÊ±»ìÓÃ `vtol/mc/fw` ½áÂÛ¡£
+4. ËùÓÐ×îÖÕ½¨Òé±ØÐë»ØÁ´µ½Ö¤¾Ý£¨´úÂëÎ»ÖÃ»òÈÕÖ¾Ê±¼ä¶Î£©¡£
 
-## æœ€ç»ˆè¾“å‡ºè¦æ±‚ï¼ˆç¼–æŽ’æŠ€èƒ½ï¼‰
+## ½×¶ÎÃÅ½û£¨Stage Gates£©
 
-æ±‡æ€»è¾“å‡ºåº”åŒ…å«ï¼š
+1. `G0` ³¡¾°Ê¶±ðÃÅ½û£ºÈ·ÈÏÊÇ¡°´úÂëÀí½âÈÎÎñ / ÈÕÖ¾·ÖÎöÈÎÎñ / ¶Ëµ½¶ËÈÎÎñ¡±£¬²¢È·ÈÏ»úÐÍ±äÌå»òÃ÷È·Îª `unknown`¡£
+2. `G1` ´úÂë½á¹¹ÃÅ½û£ºÈôÈÎÎñÉæ¼°µ÷²Î½âÊÍ£¬ÖÁÉÙÍê³É `fmt-control-loop-reader` + `fmt-mbd-interface-reader` + `fmt-logging-pipeline-reader` Ö®Ò»×éºÏÖÐµÄ±ØÒªÏî¡£
+3. `G2` ÈÕÖ¾¿ÉÓÃÐÔÃÅ½û£º½øÈëÈÕÖ¾·ÖÎöÇ°£¬È·ÈÏÈÕÖ¾ÎÄ¼þÍêÕûÐÔ»ò½á¹¹»¯Êý¾Ý¿ÉÓÃÐÔ£»Ëð»µÈÕÖ¾Ó¦ÏÈÊä³ö»Ö¸´·¶Î§¡£
+4. `G3` ·Ö¶ÎÃÅ½û£º½øÈë¿ØÖÆÐÔÄÜ·ÖÎöÇ°£¬±ØÐëÓÐ `flight_phase_segments` »òµÈÐ§·Ö¶Î½á¹û£¨º¬·Ö¶ÎÒÀ¾Ý£©¡£
+5. `G4` Ö¤¾ÝÃÅ½û£º½øÈëµ÷²Î½¨ÒéÇ°£¬±ØÐëÓÐ¡°ÏÖÏó -> Ö¤¾Ý -> ºòÑ¡¸ùÒò¡±µÄÁ´Ìõ£¬ÇÒËµÃ÷ÖÃÐÅ¶È¡£
+6. `G5` ÑéÖ¤¼Æ»®ÃÅ½û£ºÊä³ö×îÖÕ½¨ÒéÊ±±ØÐë°üº¬·çÏÕ¡¢¸±×÷ÓÃ¡¢ÑéÖ¤Ö¸±êÓëÍ¨¹ýÌõ¼þ£¨Test Card£©¡£
 
-1. ä»»åŠ¡èƒŒæ™¯ä¸Žç›®æ ‡
-2. ä»£ç ä¾§ç†è§£æ‘˜è¦ï¼ˆè°ƒåº¦ã€æŽ§åˆ¶ç»“æž„ã€çŠ¶æ€æœºã€æ—¥å¿—é“¾è·¯ï¼‰
-3. æ—¥å¿—è§£ç ä¸Žå®Œæ•´æ€§æ‘˜è¦
-4. é£žè¡Œé˜¶æ®µåˆ†æ®µä¸Žå…³é”®äº‹ä»¶æ‘˜è¦
-5. æŽ§åˆ¶æ€§èƒ½åˆ†æžä¸Žå€™é€‰æ ¹å› 
-6. å‚æ•°ä¼˜åŒ–å»ºè®®ï¼ˆä¼˜å…ˆçº§ï¼‰
-7. ä¸‹ä¸€è½®éªŒè¯è®¡åˆ’ï¼ˆTest Cardï¼‰
-8. ä¸ç¡®å®šé¡¹ä¸Žå¾…è¡¥æ•°æ®
+## Ê§°ÜÓëÖÐÖ¹²ßÂÔ£¨Failure / Stop Rules£©
 
-## ä½•æ—¶å¼•å¯¼ç”¨æˆ·æ”¹ç”¨åŽŸå­æŠ€èƒ½
+1. »úÐÍ±äÌå²»Ã÷ÇÒÏÔÖøÓ°Ïì½áÂÛÊ±£ºÍ£Ö¹¸ø¾ßÌåµ÷²Î½¨Òé£¬ÏÈÊä³ö±äÌåÈ·ÈÏÇåµ¥¡£
+2. ÈÕÖ¾Ëð»µ»ò×Ö¶ÎÈ±Ê§µ¼ÖÂÎÞ·¨·Ö¶ÎÊ±£ºÍ£Ö¹ÔÚ `mlog` ½âÂë/·Ö¶Î½×¶Î£¬Êä³ö»Ö¸´·¶Î§Óë²¹²É½¨Òé¡£
+3. È±Ê§²ÎÊý¿ìÕÕÊ±£º¿ÉÒÔ¸ø·½Ïò¼¶£¨directional£©½¨Òé£¬µ«²»Êä³ö¾ßÌå²ÎÊýÖµÐÞ¸ÄÁ¿¡£
+4. ´úÂë°æ±¾ÓëÈÕÖ¾°æ±¾Ã÷ÏÔ²»Æ¥ÅäÊ±£ºÏÈ±ê¼Ç¸ß·çÏÕ£¬±ÜÃâ°Ñ´úÂë½áÂÛÖ±½ÓÓ³Éäµ½ÈÕÖ¾ÏÖÏó¡£
 
-åœ¨ä»¥ä¸‹æƒ…å†µåº”æ˜Žç¡®å»ºè®®æ”¹ç”¨åŽŸå­æŠ€èƒ½ï¼š
+## ×îÖÕÊä³öÒªÇó£¨±àÅÅ¼¼ÄÜ£©
 
-1. ç”¨æˆ·åªé—® FMS çŠ¶æ€æœº
-2. ç”¨æˆ·åªé—® mlog æ ¼å¼æˆ–æ—¥å¿—è§£ç 
-3. ç”¨æˆ·åªè¦æŠ¥å‘Šæ•´ç†ï¼Œä¸éœ€è¦é‡æ–°åˆ†æž
+»ã×ÜÊä³öÓ¦°üº¬£º
 
-è¿™æ ·å¯ä»¥æå‡å‡†ç¡®æ€§å¹¶å‡å°‘ä¸Šä¸‹æ–‡å†—ä½™ã€‚
+1. ÈÎÎñ±³¾°ÓëÄ¿±ê
+2. ´úÂë²àÀí½âÕªÒª£¨µ÷¶È¡¢¿ØÖÆ½á¹¹¡¢×´Ì¬»ú¡¢ÈÕÖ¾Á´Â·£©
+3. ÈÕÖ¾½âÂëÓëÍêÕûÐÔÕªÒª
+4. ·ÉÐÐ½×¶Î·Ö¶ÎÓë¹Ø¼üÊÂ¼þÕªÒª
+5. ¿ØÖÆÐÔÄÜ·ÖÎöÓëºòÑ¡¸ùÒò
+6. ²ÎÊýÓÅ»¯½¨Òé£¨ÓÅÏÈ¼¶£©
+7. ÏÂÒ»ÂÖÑéÖ¤¼Æ»®£¨Test Card£©
+8. ²»È·¶¨ÏîÓë´ý²¹Êý¾Ý
+
+## ±àÅÅÊä³öÖÊÁ¿ÒªÇó£¨Quality Expectations£©
+
+1. »ã×ÜÄÚÈÝ±ØÐëÏÔÊ½±êÃ÷¸÷½×¶Î¹¤¼þÀ´Ô´£¨ÄÄÐ©ÒÑÍê³É¡¢ÄÄÐ©È±Ê§£©¡£
+2. ¶ÔÃ¿Ìõµ÷²Î½¨Òé¸ø³öÓÅÏÈ¼¶£¨P1/P2/P3£©ÓëÖÃÐÅ¶È£¨¸ß/ÖÐ/µÍ£©¡£
+3. ¶ÔÎÞ·¨±Õ»·µÄÎÊÌâ¸ø³ö¡°ÏÂÒ»²½×îÐ¡ÑéÖ¤¶¯×÷¡±£¨ÀýÈç²¹²ÉÄ³¶ÎÈÕÖ¾¡¢Ôö¼ÓÄ³ÐÅºÅ¼ÇÂ¼¡¢¸´·ÉÄ³¹¤¿ö£©¡£
+
+## ºÎÊ±Òýµ¼ÓÃ»§¸ÄÓÃÔ­×Ó¼¼ÄÜ
+
+ÔÚÒÔÏÂÇé¿öÓ¦Ã÷È·½¨Òé¸ÄÓÃÔ­×Ó¼¼ÄÜ£º
+
+1. ÓÃ»§Ö»ÎÊ FMS ×´Ì¬»ú
+2. ÓÃ»§Ö»ÎÊ mlog ¸ñÊ½»òÈÕÖ¾½âÂë
+3. ÓÃ»§Ö»Òª±¨¸æÕûÀí£¬²»ÐèÒªÖØÐÂ·ÖÎö
+
+ÕâÑù¿ÉÒÔÌáÉý×¼È·ÐÔ²¢¼õÉÙÉÏÏÂÎÄÈßÓà¡£

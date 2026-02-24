@@ -1,61 +1,121 @@
 ---
 name: fmt-tuning-report-writer
-description: å°† FMT é£žè¡Œæ—¥å¿—åˆ†æžç»“æžœæ•´ç†ä¸ºç»“æž„åŒ–æŽ§åˆ¶å‚æ•°ä¼˜åŒ–æŠ¥å‘Šä¸Žä¸‹ä¸€è½®è¯•é£žéªŒè¯è®¡åˆ’ï¼ˆTest Cardï¼‰çš„ä¸“ç”¨æŠ€èƒ½ã€‚ç”¨äºŽåœ¨å·²æœ‰ä»£ç ç†è§£å’Œæ—¥å¿—åˆ†æžè¯æ®çš„åŸºç¡€ä¸Šè¾“å‡ºé«˜è´¨é‡æŠ¥å‘Šï¼›ä¸è´Ÿè´£ç”Ÿæˆè¯æ®æˆ–è§£ç æ—¥å¿—ã€‚
+description: ½« FMT ·ÉÐÐÈÕÖ¾·ÖÎö½á¹ûÕûÀíÎª½á¹¹»¯¿ØÖÆ²ÎÊýÓÅ»¯±¨¸æÓëÏÂÒ»ÂÖÊÔ·ÉÑéÖ¤¼Æ»®£¨Test Card£©µÄ×¨ÓÃ¼¼ÄÜ¡£ÓÃÓÚÔÚÒÑÓÐ´úÂëÀí½âºÍÈÕÖ¾·ÖÎöÖ¤¾ÝµÄ»ù´¡ÉÏÊä³ö¸ßÖÊÁ¿±¨¸æ£»²»¸ºÔðÉú³ÉÖ¤¾Ý»ò½âÂëÈÕÖ¾¡£
 ---
 
 # FMT Tuning Report Writer
 
-## ç›®æ ‡
+## Ä¿±ê
 
-æŠŠå·²æœ‰åˆ†æžè¯æ®æ•´ç†æˆä¸€ä»½å¯æ‰§è¡Œã€å¯å¤é£žéªŒè¯ã€å¯è¿½è¸ªçš„å‚æ•°ä¼˜åŒ–æŠ¥å‘Šã€‚
+°ÑÒÑÓÐ·ÖÎöÖ¤¾ÝÕûÀí³ÉÒ»·Ý¿ÉÖ´ÐÐ¡¢¿É¸´·ÉÑéÖ¤¡¢¿É×·×ÙµÄ²ÎÊýÓÅ»¯±¨¸æ¡£
 
-é»˜è®¤ç”¨ä¸­æ–‡è¾“å‡ºï¼›ä¸“ä¸šæœ¯è¯­é¦–æ¬¡å‡ºçŽ°æ—¶é™„è‹±æ–‡æ³¨é‡Šã€‚
+Ä¬ÈÏÓÃÖÐÎÄÊä³ö£»×¨ÒµÊõÓïÊ×´Î³öÏÖÊ±¸½Ó¢ÎÄ×¢ÊÍ¡£
 
-## å‰ç½®è¾“å…¥ï¼ˆå¿…éœ€ï¼‰
+## µÚÒ»ÐÔÔ­ÀíÈÎÎñ¶¨Òå£¨First-Principles Task Definition£©
 
-1. ä»£ç ç†è§£ç»“è®ºï¼ˆè‡³å°‘åŒ…å«æŽ§åˆ¶ç»“æž„ä¸Žæ—¥å¿—é“¾è·¯ï¼‰
-2. æ—¥å¿—åˆ†æžç»“è®ºï¼ˆçŽ°è±¡ã€è¯æ®ã€å€™é€‰æ ¹å› ï¼‰
-3. å‚æ•°å¿«ç…§æˆ–å½“å‰å‚æ•°åˆ—è¡¨ï¼ˆå»ºè®®ï¼‰
-4. æœºåž‹ä¸Žä»»åŠ¡èƒŒæ™¯
+1. ×îÐ¡ÈÎÎñµ¥Ôª£¨Minimum Task Unit£©
+   - ÔÚÒÑÓÐ´úÂëÀí½âÓëÈÕÖ¾·ÖÎöÖ¤¾Ý»ù´¡ÉÏ£¬Êä³ö¿ÉÖ´ÐÐ¡¢¿ÉÑéÖ¤¡¢¿É×·×ÙµÄ²ÎÊýÓÅ»¯±¨¸æÓëÊÔ·ÉÑéÖ¤¼Æ»®£¬²»ÐÂÔö·ÖÎöÖ¤¾Ý¡£
+2. ºËÐÄÊäÈë£¨Inputs£©
+   - ´úÂëÀí½â¹¤¼þ£¨ÖÁÉÙ¿ØÖÆ½á¹¹ÓëÈÕÖ¾Á´Â·£©
+   - ÈÕÖ¾·ÖÎö¹¤¼þ£¨ÏÖÏó¡¢Ö¤¾Ý¡¢ºòÑ¡¸ùÒò£©
+   - ²ÎÊý¿ìÕÕ/µ±Ç°²ÎÊýÁÐ±íÓëÈÎÎñÄ¿±ê
+3. ºËÐÄÊä³ö£¨Outputs£©
+   - Ö÷½»¸¶¹¤¼þ£º`tuning_recommendation_report`
+   - ½á¹¹»¯±¨¸æ¡¢²ÎÊý½¨ÒéÌõÄ¿¡¢·çÏÕÓë¸±×÷ÓÃ¡¢Test Card
+   - Î´±Õ»·ÎÊÌâÓë´ý²¹Êý¾ÝÇåµ¥
+4. Íê³ÉÅÐ¾Ý£¨Definition of Done, DoD£©
+   - Ã¿Ìõ½¨Òé¶¼ÓÐÖ¤¾Ý»ØÁ´¡¢·çÏÕÓëÑéÖ¤Ö¸±ê
+   - ºòÑ¡¸ùÒòÓëÈ·¶¨ÐÔ½áÂÛ±»Ã÷È·Çø·Ö
+   - È±Ê§Ö¤¾ÝÊ±Êä³öÈ±¿ÚÓë²¹ÊÔ½¨Òé£¬¶ø·Ç´Õ½áÂÛ
+5. Êä³öÓïÑÔÔ¼¶¨£¨Language Convention£©
+   - Ä¬ÈÏÖÐÎÄÊä³ö£»×¨ÒµÊõÓïÊ×´Î³öÏÖ¸½Ó¢ÎÄ×¢ÊÍ£¨English Annotation£©¡£
+   - ±£Áô²ÎÊýÃû¡¢ÐÅºÅÃû¡¢½á¹¹ÌåÃû¡¢º¯ÊýÃûÔ­ÎÄ£¬±ÜÃâ·­ÒëÔì³ÉÆçÒå¡£
 
-## èšç„¦èŒƒå›´ï¼ˆåªåšè¿™äº›ï¼‰
+## Ç°ÖÃÊäÈë£¨±ØÐè£©
 
-1. æŠ¥å‘Šç»“æž„åŒ–è¾“å‡º
-2. è°ƒå‚å»ºè®®æ¡ç›®åŒ–
-3. é£Žé™©ä¸Žå‰¯ä½œç”¨è¯´æ˜Ž
-4. ä¸‹ä¸€è½®è¯•é£žéªŒè¯è®¡åˆ’ï¼ˆTest Cardï¼‰
+1. ´úÂëÀí½â½áÂÛ£¨ÖÁÉÙ°üº¬¿ØÖÆ½á¹¹ÓëÈÕÖ¾Á´Â·£©
+2. ÈÕÖ¾·ÖÎö½áÂÛ£¨ÏÖÏó¡¢Ö¤¾Ý¡¢ºòÑ¡¸ùÒò£©
+3. ²ÎÊý¿ìÕÕ»òµ±Ç°²ÎÊýÁÐ±í£¨½¨Òé£©
+4. »úÐÍÓëÈÎÎñ±³¾°
 
-## ä¸è´Ÿè´£
+## ¾Û½¹·¶Î§£¨Ö»×öÕâÐ©£©
 
-1. æ–°çš„ä»£ç é˜…è¯»ç»“è®º
-2. æ–°çš„æ—¥å¿—è§£ç 
-3. æ–°çš„æŽ§åˆ¶æ€§èƒ½è®¡ç®—
+1. ±¨¸æ½á¹¹»¯Êä³ö
+2. µ÷²Î½¨ÒéÌõÄ¿»¯
+3. ·çÏÕÓë¸±×÷ÓÃËµÃ÷
+4. ÏÂÒ»ÂÖÊÔ·ÉÑéÖ¤¼Æ»®£¨Test Card£©
 
-## æŠ¥å‘Šéª¨æž¶ï¼ˆé»˜è®¤ï¼‰
+## ²»¸ºÔð
 
-1. ä»»åŠ¡èƒŒæ™¯ï¼ˆæœºåž‹ã€ç›®æ ‡ã€æ—¥å¿—æ¥æºã€ç‰ˆæœ¬ï¼‰
-2. ä»£ç ä¾§ç†è§£æ‘˜è¦ï¼ˆè°ƒåº¦/INS/FMS/Controller/æ—¥å¿—é“¾è·¯ï¼‰
-3. æ—¥å¿—æ•°æ®å®Œæ•´æ€§ä¸Žåˆ†æžèŒƒå›´
-4. é£žè¡Œé˜¶æ®µä¸Žå…³é”®äº‹ä»¶æ‘˜è¦
-5. å…³é”®çŽ°è±¡ä¸Žè¯æ®ï¼ˆæŒ‰ä¸¥é‡åº¦ï¼‰
-6. å€™é€‰æ ¹å› ï¼ˆåˆ†å±‚ï¼šINS/FMS/Controller/æ‰§è¡Œå™¨ï¼‰
-7. å‚æ•°ä¼˜åŒ–å»ºè®®ï¼ˆåˆ†ä¼˜å…ˆçº§ï¼‰
-8. é£Žé™©ä¸Žå‰¯ä½œç”¨
-9. ä¸‹ä¸€è½®è¯•é£žéªŒè¯è®¡åˆ’ï¼ˆTest Cardï¼‰
-10. ä¸ç¡®å®šé¡¹ä¸Žå¾…è¡¥æ•°æ®
+1. ÐÂµÄ´úÂëÔÄ¶Á½áÂÛ
+2. ÐÂµÄÈÕÖ¾½âÂë
+3. ÐÂµÄ¿ØÖÆÐÔÄÜ¼ÆËã
 
-## æ¯æ¡è°ƒå‚å»ºè®®çš„å¿…å¡«å­—æ®µ
+## ±¨¸æ¹Ç¼Ü£¨Ä¬ÈÏ£©
 
-1. ç›®æ ‡çŽ°è±¡
-2. è¯æ®æ—¶é—´æ®µä¸Žä¿¡å·
-3. å€™é€‰å‚æ•°ï¼ˆå¦‚ `CONTROL.xxx` / `FMS.xxx` / `INS.xxx`ï¼‰
-4. è°ƒæ•´æ–¹å‘ï¼ˆå¢žå¤§/å‡å°ï¼‰
-5. é¢„æœŸæ•ˆæžœ
-6. é£Žé™©/å‰¯ä½œç”¨
-7. éªŒè¯æŒ‡æ ‡ä¸Žé€šè¿‡æ¡ä»¶
+1. ÈÎÎñ±³¾°£¨»úÐÍ¡¢Ä¿±ê¡¢ÈÕÖ¾À´Ô´¡¢°æ±¾£©
+2. ´úÂë²àÀí½âÕªÒª£¨µ÷¶È/INS/FMS/Controller/ÈÕÖ¾Á´Â·£©
+3. ÈÕÖ¾Êý¾ÝÍêÕûÐÔÓë·ÖÎö·¶Î§
+4. ·ÉÐÐ½×¶ÎÓë¹Ø¼üÊÂ¼þÕªÒª
+5. ¹Ø¼üÏÖÏóÓëÖ¤¾Ý£¨°´ÑÏÖØ¶È£©
+6. ºòÑ¡¸ùÒò£¨·Ö²ã£ºINS/FMS/Controller/Ö´ÐÐÆ÷£©
+7. ²ÎÊýÓÅ»¯½¨Òé£¨·ÖÓÅÏÈ¼¶£©
+8. ·çÏÕÓë¸±×÷ÓÃ
+9. ÏÂÒ»ÂÖÊÔ·ÉÑéÖ¤¼Æ»®£¨Test Card£©
+10. ²»È·¶¨ÏîÓë´ý²¹Êý¾Ý
 
-## çºªå¾‹çº¦æŸ
+## Ã¿Ìõµ÷²Î½¨ÒéµÄ±ØÌî×Ö¶Î
 
-1. ä¸è¦ç¼–é€ æœªæä¾›çš„è¯æ®ã€‚
-2. ä¸è¦æŠŠå€™é€‰æ ¹å› å†™æˆç¡®å®šç»“è®ºï¼ˆé™¤éžè¯æ®å……åˆ†ï¼‰ã€‚
-3. å¯¹ç¼ºå¤±æ•°æ®æ˜Žç¡®æ ‡æ³¨ï¼Œä¸ç”¨ç©ºæ³›è¯æœ¯å¡«å……ã€‚
+1. Ä¿±êÏÖÏó
+2. Ö¤¾ÝÊ±¼ä¶ÎÓëÐÅºÅ
+3. ºòÑ¡²ÎÊý£¨Èç `CONTROL.xxx` / `FMS.xxx` / `INS.xxx`£©
+4. µ÷Õû·½Ïò£¨Ôö´ó/¼õÐ¡£©
+5. Ô¤ÆÚÐ§¹û
+6. ·çÏÕ/¸±×÷ÓÃ
+7. ÑéÖ¤Ö¸±êÓëÍ¨¹ýÌõ¼þ
+
+## ÉÏÏÂÓÎ½»½Ó£¨Artifact Handoff£©
+
+1. ÉÏÓÎÒÀÀµ£¨Upstream Dependencies£©
+   - ´úÂëÔÄ¶ÁÀà¹¤¼þ£¨ÖÁÉÙÒ»Ïî£©
+   - `control_performance_findings`£¨ÍÆ¼ö£©
+2. ÏÂÓÎÊ¹ÓÃ·½£¨Downstream Consumers£©
+   - `fmt-flight-control-param-optimizer` »ò×îÖÕ½»¸¶¸ø·É¿Ø¹¤³ÌÊ¦
+3. Ö÷½»¸¶¹¤¼þ£¨Primary Artifact£©
+   - `tuning_recommendation_report`
+   - ¹¤¼þÖÁÉÙ°üº¬£º·ÖÎö·¶Î§£¨scope£©¡¢¹Ø¼üÊÂÊµ£¨facts£©¡¢¹Ø¼üÍÆ¶Ï£¨inferences£©¡¢Ö¤¾ÝË÷Òý£¨evidence index£©¡¢È±¿ÚÇåµ¥£¨gaps£©¡¢ÏÂÓÎÊäÈë½¨Òé£¨next skill inputs£©¡£
+4. ¹²Ïí¹æ·¶£¨Shared Contracts£©
+   - ²Î¿¼ `fmt/_meta/first-principles-skill-contract.md`
+   - ²Î¿¼ `fmt/_meta/artifact-handoff-contract.md`
+
+## ÖÊÁ¿ÃÅ½û£¨Quality Gates£©
+
+1. ±Ø¹ýÃÅ½û£¨Mandatory Gates£©
+   - ±ß½çÃÅ½û£¨Boundary Purity£©£º²»Êä³ö³¬³ö±¾¼¼ÄÜÖ°ÔðµÄÈ·¶¨ÐÔ½áÂÛ¡£
+   - Ö¤¾ÝÃÅ½û£¨Evidence Traceability£©£º¹Ø¼ü½áÂÛ±ØÐëÄÜ»ØÁ´µ½´úÂëÂ·¾¶ÐÐºÅ»òÈÕÖ¾Ê±¼ä¶Î¡£
+   - ±äÌåÃÅ½û£¨Variant Scope£©£ºÃ÷È· `vtol/mc/fw` ÊÊÓÃ·¶Î§£¬Î´ÖªÊ±±ê×¢ `unknown`¡£
+   - ½»½ÓÃÅ½û£¨Handoff Usability£©£ºÊä³ö¿É±»ÏÂÓÎ¼¼ÄÜÖ±½ÓÏû·Ñ£¬²»Ö»¸øÉ¢ÎÄÊ½ÃèÊö¡£
+   - ¿ÉÖ´ÐÐÐÔÃÅ½û£ºÃ¿Ìõµ÷²Î½¨Òé±ØÐë°üº¬ÑéÖ¤Ö¸±êÓëÍ¨¹ýÌõ¼þ¡£
+2. ×Ô¼ì½¨Òé£¨Self Check£©
+   - ¿ÉÊ¹ÓÃ `fmt/_meta/quality-scorecard.md` ¶Ô±¾´ÎÊä³ö½øÐÐ¿ìËÙ´ò·Ö£¨ÖÁÉÙ¼ì²é IO ÆõÔ¼¡¢Ö¤¾Ý¡¢½µ¼¶²ßÂÔ£©¡£
+
+## Ê§°ÜÓë½µ¼¶²ßÂÔ£¨Failure / Fallback£©
+
+1. ÊäÈë²»×ã´¦Àí
+   - Ö¤¾Ý²»×ãÊ±£ºÊä³ö¡°µ÷²ÎÇ°ÖÃÌõ¼þÎ´Âú×ã¡±±¨¸æ£¬¶ø²»ÊÇ¸ø¾ßÌå²ÎÊý¸ÄÖµ
+   - ²ÎÊý¿ìÕÕÈ±Ê§Ê±£ºÃ÷È·½¨Òé²¹²É/µ¼³ö²ÎÊý¿ìÕÕ²¢ÏÞÖÆ½¨ÒéÁ£¶È
+2. Êä³ö½µ¼¶ÒªÇó
+   - ½µ¼¶Êä³öÊ±±ØÐëÏÔÊ½±ê×¢ÊÜÓ°Ïì½áÂÛ¡¢ÊÜÓ°Ïì·¶Î§ÓëÖÃÐÅ¶È±ä»¯¡£
+   - ½µ¼¶²»µÈÓÚÌø²½£»²»µÃÔ½¹ý±¾¼¼ÄÜÖ°ÔðÖ±½Ó¸øÏÂÓÎ×îÖÕ½áÂÛ¡£
+
+## references/ Ê¹ÓÃ½¨Òé
+
+1. ¿ìËÙÊä³öÊ±£¬ÏÈ¼ÓÔØ `references/output-template.md` ×÷Îª¹Ç¼Ü£¬±ÜÃâÒÅÂ©½»½Ó×Ö¶Î¡£
+2. ÕýÊ½½»¸¶Ç°£¬¼ÓÔØ `references/checklist.md` ×ö±ß½ç¡¢Ö¤¾Ý¡¢½µ¼¶²ßÂÔ¸´ºË¡£
+3. ×¨ÏîÌáÊ¾£ºÉú³ÉÕýÊ½µ÷²Î±¨¸æºÍ Test Card Ê±ÏÈÌ×Ä£°å£»½»¸¶Ç°ÓÃÇåµ¥¸´ºËÖ¤¾Ý»ØÁ´¡¢·çÏÕºÍÑéÖ¤Ìõ¼þ¡£
+
+## ¼ÍÂÉÔ¼Êø
+
+1. ²»Òª±àÔìÎ´Ìá¹©µÄÖ¤¾Ý¡£
+2. ²»Òª°ÑºòÑ¡¸ùÒòÐ´³ÉÈ·¶¨½áÂÛ£¨³ý·ÇÖ¤¾Ý³ä·Ö£©¡£
+3. ¶ÔÈ±Ê§Êý¾ÝÃ÷È·±ê×¢£¬²»ÓÃ¿Õ·º»°ÊõÌî³ä¡£

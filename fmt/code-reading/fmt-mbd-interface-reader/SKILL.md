@@ -1,61 +1,123 @@
 ---
 name: fmt-mbd-interface-reader
-description: è¯»å– FMT-Firmware ä¸­ INS/FMS/Controller çš„æŽ¥å£æ¡¥æŽ¥ä»£ç ä¸Ž MBD ç”Ÿæˆä»£ç è¾¹ç•Œï¼ˆ`*_interface.c` vs `lib/*.c`ï¼‰ï¼Œæ¢³ç†å‚æ•°ç»‘å®šã€bus å®šä¹‰ã€topic æ˜ å°„å’Œæ¨¡åž‹è°ƒç”¨å…¥å£çš„ä¸“ç”¨æŠ€èƒ½ã€‚ç”¨äºŽéœ€è¦å‡†ç¡®ç†è§£æŽ§åˆ¶å¾‹ä»£ç ç»“æž„è€Œéžè°ƒåº¦å…¨å±€æˆ–æ—¥å¿—åˆ†æžæ—¶ã€‚
+description: ¶ÁÈ¡ FMT-Firmware ÖÐ INS/FMS/Controller µÄ½Ó¿ÚÇÅ½Ó´úÂëÓë MBD Éú³É´úÂë±ß½ç£¨`*_interface.c` vs `lib/*.c`£©£¬ÊáÀí²ÎÊý°ó¶¨¡¢bus ¶¨Òå¡¢topic Ó³ÉäºÍÄ£ÐÍµ÷ÓÃÈë¿ÚµÄ×¨ÓÃ¼¼ÄÜ¡£ÓÃÓÚÐèÒª×¼È·Àí½â¿ØÖÆÂÉ´úÂë½á¹¹¶ø·Çµ÷¶ÈÈ«¾Ö»òÈÕÖ¾·ÖÎöÊ±¡£
 ---
 
 # FMT MBD Interface Reader
 
-## ç›®æ ‡
+## Ä¿±ê
 
-æžæ¸…æ¥š FMT æŽ§åˆ¶å¾‹æ¨¡å—é‡Œâ€œæŽ¥å£å±‚åšä»€ä¹ˆã€ç”Ÿæˆä»£ç å±‚åšä»€ä¹ˆâ€ï¼Œé¿å…æŠŠæ¡¥æŽ¥é€»è¾‘å’ŒæŽ§åˆ¶å¾‹é€»è¾‘æ··åœ¨ä¸€èµ·åˆ†æžã€‚
+¸ãÇå³þ FMT ¿ØÖÆÂÉÄ£¿éÀï¡°½Ó¿Ú²ã×öÊ²Ã´¡¢Éú³É´úÂë²ã×öÊ²Ã´¡±£¬±ÜÃâ°ÑÇÅ½ÓÂß¼­ºÍ¿ØÖÆÂÉÂß¼­»ìÔÚÒ»Æð·ÖÎö¡£
 
-## èšç„¦èŒƒå›´ï¼ˆåªåšè¿™äº›ï¼‰
+## µÚÒ»ÐÔÔ­ÀíÈÎÎñ¶¨Òå£¨First-Principles Task Definition£©
 
-1. `*_interface.c` èŒè´£è¾¹ç•Œ
-2. `lib/*.c` / `*.h` ç”Ÿæˆä»£ç å…¥å£ä¸Žä¸»è¦æ–‡ä»¶è§’è‰²
-3. å‚æ•°ç»„å®šä¹‰ä¸Žå‚æ•°ç»‘å®šï¼ˆ`PARAM_GROUP_DEFINE` / `param_link_variable`ï¼‰
-4. `MLOG_BUS_DEFINE` ä¸Ž bus è¾“å‡ºæ˜ å°„
-5. æ¨¡åž‹ `init/step` è°ƒç”¨ä½ç½®
+1. ×îÐ¡ÈÎÎñµ¥Ôª£¨Minimum Task Unit£©
+   - ÔÚµ¥Ò»¿ØÖÆÂÉÄ£¿é£¨INS/FMS/Controller µÄÄ³Ò»±äÌåÄ¿Â¼£©ÄÚ£¬Íê³É½Ó¿ÚÇÅ½Ó²ãÓë MBD Éú³É´úÂë²ãµÄÖ°Ôð»®·ÖÓëÊý¾ÝÓ³ÉäÊáÀí¡£
+2. ºËÐÄÊäÈë£¨Inputs£©
+   - Ä¿±êÄ£¿éÄ¿Â¼£¨Èç `src/model/fms/vtol_fms/`£©
+   - `*_interface.c` Óë `lib/` Éú³É´úÂëÎÄ¼þ¿É¶Á
+   - ±äÌåÐÅÏ¢ÓëÈÎÎñ¹Ø×¢µã£¨²ÎÊý°ó¶¨¡¢bus Ó³Éä»òÄ£ÐÍÈë¿Ú£©
+3. ºËÐÄÊä³ö£¨Outputs£©
+   - Ö÷½»¸¶¹¤¼þ£º`mbd_boundary_map`
+   - ½Ó¿Ú²ã vs Éú³É´úÂë²ãÖ°Ôð¶ÔÕÕ¡¢topic/bus Ó³Éä¡¢²ÎÊý°ó¶¨Â·¾¶¡¢Ä£ÐÍ `init/step` µ÷ÓÃÁ´
+   - ÐèÒª½øÈëÉú³É´úÂë½øÒ»²½È·ÈÏµÄÒþ²Ø¸´ÔÓ¶ÈÇåµ¥
+4. Íê³ÉÅÐ¾Ý£¨Definition of Done, DoD£©
+   - ½Ó¿Ú²ãÓëÉú³É´úÂë²ã±ß½çÒÑÃ÷È·£¬Î´»ìÏý glue code Óë¿ØÖÆÂÉ±¾Ìå
+   - ÖÁÉÙÒ»Ìõ²ÎÊý°ó¶¨Â·¾¶ºÍÒ»Ìõ bus/topic Ó³ÉäÂ·¾¶¿É»ØÁ´µ½´úÂë
+   - ¶ÔÉú³É´úÂëÄÚ²¿Î´ÑéÖ¤²¿·ÖÏÔÊ½±ê×¢Îª´ýÈ·ÈÏÏî
+5. Êä³öÓïÑÔÔ¼¶¨£¨Language Convention£©
+   - Ä¬ÈÏÖÐÎÄÊä³ö£»×¨ÒµÊõÓïÊ×´Î³öÏÖ¸½Ó¢ÎÄ×¢ÊÍ£¨English Annotation£©¡£
+   - ±£Áô²ÎÊýÃû¡¢ÐÅºÅÃû¡¢½á¹¹ÌåÃû¡¢º¯ÊýÃûÔ­ÎÄ£¬±ÜÃâ·­ÒëÔì³ÉÆçÒå¡£
 
-## ä¸è´Ÿè´£
+## ¾Û½¹·¶Î§£¨Ö»×öÕâÐ©£©
 
-1. å®Œæ•´é£žè¡Œé˜¶æ®µåˆ’åˆ†
-2. `mlog` è§£ç 
-3. æŽ§åˆ¶æ€§èƒ½å®šé‡åˆ†æž
-4. æœ€ç»ˆè°ƒå‚å»ºè®®
+1. `*_interface.c` Ö°Ôð±ß½ç
+2. `lib/*.c` / `*.h` Éú³É´úÂëÈë¿ÚÓëÖ÷ÒªÎÄ¼þ½ÇÉ«
+3. ²ÎÊý×é¶¨ÒåÓë²ÎÊý°ó¶¨£¨`PARAM_GROUP_DEFINE` / `param_link_variable`£©
+4. `MLOG_BUS_DEFINE` Óë bus Êä³öÓ³Éä
+5. Ä£ÐÍ `init/step` µ÷ÓÃÎ»ÖÃ
 
-## é€‚ç”¨å¯¹è±¡
+## ²»¸ºÔð
+
+1. ÍêÕû·ÉÐÐ½×¶Î»®·Ö
+2. `mlog` ½âÂë
+3. ¿ØÖÆÐÔÄÜ¶¨Á¿·ÖÎö
+4. ×îÖÕµ÷²Î½¨Òé
+
+## ÊÊÓÃ¶ÔÏó
 
 1. `src/model/ins/<variant>/`
 2. `src/model/fms/<variant>_fms/`
 3. `src/model/control/<variant>_controller/`
 
-## æ‰§è¡Œæ­¥éª¤
+## Ö´ÐÐ²½Öè
 
-1. é€‰å®šå˜ä½“ç›®å½•åŽï¼Œå…ˆè¯» `*_interface.c`ã€‚
-2. æå–ï¼š
-   - è¾“å…¥ topicï¼ˆ`MCN_DECLARE` / `mcn_subscribe`ï¼‰
-   - è¾“å‡º topicï¼ˆ`MCN_DEFINE` / `mcn_publish`ï¼‰
-   - å‚æ•°ç»„å®šä¹‰ä¸Žç»‘å®š
-   - æ—¥å¿—æ€»çº¿å®šä¹‰ä¸Žè®°å½•ç‚¹
-   - `*_init()` / `*_step()` è°ƒç”¨
-3. å†è¯» `lib/` ä¸‹æ–‡ä»¶ï¼Œæ ‡å‡ºï¼š
-   - ç”Ÿæˆä»£ç ä¸»å…¥å£å‡½æ•°
-   - çŠ¶æ€/å‚æ•°/æ•°æ®æ–‡ä»¶èŒè´£ï¼ˆ`*_types.h`, `*_data.c`, `*_private.h`ï¼‰
-4. æ ‡è®°â€œæŽ¥å£å±‚å¯è§é€»è¾‘â€å’Œâ€œç”Ÿæˆä»£ç å†…éƒ¨é€»è¾‘â€çš„è¾¹ç•Œã€‚
+1. Ñ¡¶¨±äÌåÄ¿Â¼ºó£¬ÏÈ¶Á `*_interface.c`¡£
+2. ÌáÈ¡£º
+   - ÊäÈë topic£¨`MCN_DECLARE` / `mcn_subscribe`£©
+   - Êä³ö topic£¨`MCN_DEFINE` / `mcn_publish`£©
+   - ²ÎÊý×é¶¨ÒåÓë°ó¶¨
+   - ÈÕÖ¾×ÜÏß¶¨ÒåÓë¼ÇÂ¼µã
+   - `*_init()` / `*_step()` µ÷ÓÃ
+3. ÔÙ¶Á `lib/` ÏÂÎÄ¼þ£¬±ê³ö£º
+   - Éú³É´úÂëÖ÷Èë¿Úº¯Êý
+   - ×´Ì¬/²ÎÊý/Êý¾ÝÎÄ¼þÖ°Ôð£¨`*_types.h`, `*_data.c`, `*_private.h`£©
+4. ±ê¼Ç¡°½Ó¿Ú²ã¿É¼ûÂß¼­¡±ºÍ¡°Éú³É´úÂëÄÚ²¿Âß¼­¡±µÄ±ß½ç¡£
 
-## è¾“å‡ºè¦æ±‚
+## Êä³öÒªÇó
 
-è‡³å°‘åŒ…å«ï¼š
+ÖÁÉÙ°üº¬£º
 
-1. æŽ¥å£å±‚ vs ç”Ÿæˆä»£ç å±‚èŒè´£å¯¹ç…§è¡¨
-2. è¾“å…¥/è¾“å‡º topic ä¸Ž bus æ˜ å°„è¡¨
-3. å‚æ•°ç»„ä¸Žå…³é”®å‚æ•°ç»‘å®šè·¯å¾„
-4. æ¨¡åž‹ `init/step` è°ƒç”¨é“¾
-5. éšè—å¤æ‚åº¦æ¸…å•ï¼ˆéœ€è¦è¿›å…¥ç”Ÿæˆä»£ç æ‰èƒ½ç¡®è®¤çš„å†…å®¹ï¼‰
+1. ½Ó¿Ú²ã vs Éú³É´úÂë²ãÖ°Ôð¶ÔÕÕ±í
+2. ÊäÈë/Êä³ö topic Óë bus Ó³Éä±í
+3. ²ÎÊý×éÓë¹Ø¼ü²ÎÊý°ó¶¨Â·¾¶
+4. Ä£ÐÍ `init/step` µ÷ÓÃÁ´
+5. Òþ²Ø¸´ÔÓ¶ÈÇåµ¥£¨ÐèÒª½øÈëÉú³É´úÂë²ÅÄÜÈ·ÈÏµÄÄÚÈÝ£©
 
-## åˆ†æžçºªå¾‹
+## ÉÏÏÂÓÎ½»½Ó£¨Artifact Handoff£©
 
-1. ä¸æŠŠ `*_interface.c` ä¸­çš„ glue code å½“æˆæŽ§åˆ¶å¾‹æœ¬ä½“ã€‚
-2. ä¸å¯¹ç”Ÿæˆä»£ç å†…éƒ¨çŠ¶æ€æœº/æŽ§åˆ¶å™¨ç»†èŠ‚åšæ— è¯æ®æŽ¨æ–­ã€‚
-3. ä¼˜å…ˆç»™ç»“æž„åŒ–æ˜ å°„ï¼Œå†ç»™è¯„ä»·ã€‚
+1. ÉÏÓÎÒÀÀµ£¨Upstream Dependencies£©
+   - `fmt-control-loop-reader`£¨ÍÆ¼ö£©»òÓÃ»§Ö¸¶¨µÄÄ¿±êÄ£¿éÂ·¾¶
+2. ÏÂÓÎÊ¹ÓÃ·½£¨Downstream Consumers£©
+   - `fmt-fms-state-machine-reader`
+   - `fmt-control-performance-analyzer`
+   - `fmt-tuning-report-writer`
+   - `fmt-flight-control-param-optimizer`
+3. Ö÷½»¸¶¹¤¼þ£¨Primary Artifact£©
+   - `mbd_boundary_map`
+   - ¹¤¼þÖÁÉÙ°üº¬£º·ÖÎö·¶Î§£¨scope£©¡¢¹Ø¼üÊÂÊµ£¨facts£©¡¢¹Ø¼üÍÆ¶Ï£¨inferences£©¡¢Ö¤¾ÝË÷Òý£¨evidence index£©¡¢È±¿ÚÇåµ¥£¨gaps£©¡¢ÏÂÓÎÊäÈë½¨Òé£¨next skill inputs£©¡£
+4. ¹²Ïí¹æ·¶£¨Shared Contracts£©
+   - ²Î¿¼ `fmt/_meta/first-principles-skill-contract.md`
+   - ²Î¿¼ `fmt/_meta/artifact-handoff-contract.md`
+
+## ÖÊÁ¿ÃÅ½û£¨Quality Gates£©
+
+1. ±Ø¹ýÃÅ½û£¨Mandatory Gates£©
+   - ±ß½çÃÅ½û£¨Boundary Purity£©£º²»Êä³ö³¬³ö±¾¼¼ÄÜÖ°ÔðµÄÈ·¶¨ÐÔ½áÂÛ¡£
+   - Ö¤¾ÝÃÅ½û£¨Evidence Traceability£©£º¹Ø¼ü½áÂÛ±ØÐëÄÜ»ØÁ´µ½´úÂëÂ·¾¶ÐÐºÅ»òÈÕÖ¾Ê±¼ä¶Î¡£
+   - ±äÌåÃÅ½û£¨Variant Scope£©£ºÃ÷È· `vtol/mc/fw` ÊÊÓÃ·¶Î§£¬Î´ÖªÊ±±ê×¢ `unknown`¡£
+   - ½»½ÓÃÅ½û£¨Handoff Usability£©£ºÊä³ö¿É±»ÏÂÓÎ¼¼ÄÜÖ±½ÓÏû·Ñ£¬²»Ö»¸øÉ¢ÎÄÊ½ÃèÊö¡£
+   - ±ß½çÃÅ½û£º²»°Ñ `*_interface.c` ÖÐµÄÊÊÅäÂß¼­Ð´³É¡°¿ØÖÆÂÉËã·¨½áÂÛ¡±¡£
+2. ×Ô¼ì½¨Òé£¨Self Check£©
+   - ¿ÉÊ¹ÓÃ `fmt/_meta/quality-scorecard.md` ¶Ô±¾´ÎÊä³ö½øÐÐ¿ìËÙ´ò·Ö£¨ÖÁÉÙ¼ì²é IO ÆõÔ¼¡¢Ö¤¾Ý¡¢½µ¼¶²ßÂÔ£©¡£
+
+## Ê§°ÜÓë½µ¼¶²ßÂÔ£¨Failure / Fallback£©
+
+1. ÊäÈë²»×ã´¦Àí
+   - ÈôÉú³É´úÂëÎÄ¼þ¹ý´ó£ºÏÈÊä³öÎÄ¼þ½ÇÉ«µØÍ¼£¨`*_types.h`/`*_data.c`/Èë¿Úº¯Êý£©ÔÙÖð²½ÏÂ×ê
+   - ÈôÄ£¿é±äÌåÎ´È·ÈÏ£º²¢ÁÐÁÐ³öºòÑ¡Ä¿Â¼²îÒì£¬²»»ìºÏ×Ö¶ÎÓïÒå
+2. Êä³ö½µ¼¶ÒªÇó
+   - ½µ¼¶Êä³öÊ±±ØÐëÏÔÊ½±ê×¢ÊÜÓ°Ïì½áÂÛ¡¢ÊÜÓ°Ïì·¶Î§ÓëÖÃÐÅ¶È±ä»¯¡£
+   - ½µ¼¶²»µÈÓÚÌø²½£»²»µÃÔ½¹ý±¾¼¼ÄÜÖ°ÔðÖ±½Ó¸øÏÂÓÎ×îÖÕ½áÂÛ¡£
+
+## references/ Ê¹ÓÃ½¨Òé
+
+1. ¿ìËÙÊä³öÊ±£¬ÏÈ¼ÓÔØ `references/output-template.md` ×÷Îª¹Ç¼Ü£¬±ÜÃâÒÅÂ©½»½Ó×Ö¶Î¡£
+2. ÕýÊ½½»¸¶Ç°£¬¼ÓÔØ `references/checklist.md` ×ö±ß½ç¡¢Ö¤¾Ý¡¢½µ¼¶²ßÂÔ¸´ºË¡£
+3. ×¨ÏîÌáÊ¾£ºÔÚÐèÒªÇø·Ö interface glue code Óë¿ØÖÆÂÉ±¾ÌåÊ±¼ÓÔØÄ£°å£»Êä³öÇ°ÓÃÇåµ¥¼ì²é±ß½ç´¿¶È¡£
+
+## ·ÖÎö¼ÍÂÉ
+
+1. ²»°Ñ `*_interface.c` ÖÐµÄ glue code µ±³É¿ØÖÆÂÉ±¾Ìå¡£
+2. ²»¶ÔÉú³É´úÂëÄÚ²¿×´Ì¬»ú/¿ØÖÆÆ÷Ï¸½Ú×öÎÞÖ¤¾ÝÍÆ¶Ï¡£
+3. ÓÅÏÈ¸ø½á¹¹»¯Ó³Éä£¬ÔÙ¸øÆÀ¼Û¡£

@@ -1,61 +1,123 @@
 ---
 name: fmt-flight-log-segmenter
-description: åŸºäºŽå·²è§£ç çš„ FMT é£žè¡Œæ—¥å¿—æ•°æ®ï¼Œå¯¹é£žè¡Œé˜¶æ®µï¼ˆèµ·é£ž/å·¡èˆª/è¿‡æ¸¡/è¿”èˆª/é™è½ç­‰ï¼‰è¿›è¡Œåˆ†æ®µå¹¶å»ºç«‹å…³é”®äº‹ä»¶ç´¢å¼•çš„ä¸“ç”¨æŠ€èƒ½ã€‚ç”¨äºŽä¸ºåŽç»­æŽ§åˆ¶æ€§èƒ½åˆ†æžå’Œè°ƒå‚æŠ¥å‘Šæä¾›æ—¶é—´æ®µä¸Šä¸‹æ–‡ï¼›ä¸è´Ÿè´£åº•å±‚äºŒè¿›åˆ¶è§£ç æˆ–æœ€ç»ˆè°ƒå‚å»ºè®®ã€‚
+description: »ùÓÚÒÑ½âÂëµÄ FMT ·ÉÐÐÈÕÖ¾Êý¾Ý£¬¶Ô·ÉÐÐ½×¶Î£¨Æð·É/Ñ²º½/¹ý¶É/·µº½/½µÂäµÈ£©½øÐÐ·Ö¶Î²¢½¨Á¢¹Ø¼üÊÂ¼þË÷ÒýµÄ×¨ÓÃ¼¼ÄÜ¡£ÓÃÓÚÎªºóÐø¿ØÖÆÐÔÄÜ·ÖÎöºÍµ÷²Î±¨¸æÌá¹©Ê±¼ä¶ÎÉÏÏÂÎÄ£»²»¸ºÔðµ×²ã¶þ½øÖÆ½âÂë»ò×îÖÕµ÷²Î½¨Òé¡£
 ---
 
 # FMT Flight Log Segmenter
 
-## ç›®æ ‡
+## Ä¿±ê
 
-æŠŠâ€œé•¿æ—¥å¿—â€åˆ‡æˆå¯è§£é‡Šçš„é£žè¡Œé˜¶æ®µä¸Žå…³é”®äº‹ä»¶æ®µï¼Œå½¢æˆåŽç»­åˆ†æžçš„æ—¶é—´ç´¢å¼•ã€‚
+°Ñ¡°³¤ÈÕÖ¾¡±ÇÐ³É¿É½âÊÍµÄ·ÉÐÐ½×¶ÎÓë¹Ø¼üÊÂ¼þ¶Î£¬ÐÎ³ÉºóÐø·ÖÎöµÄÊ±¼äË÷Òý¡£
 
-## å‰ç½®è¾“å…¥ï¼ˆç†æƒ³ï¼‰
+## µÚÒ»ÐÔÔ­ÀíÈÎÎñ¶¨Òå£¨First-Principles Task Definition£©
 
-1. å·²è§£ç  `mlog` æ•°æ®ï¼ˆè‡³å°‘åŒ…å« `FMS_Out`, `INS_Out`, `Control_Out`ï¼‰
-2. å¯é€‰ `ulog.txt`ï¼ˆç”¨äºŽè¾…åŠ©äº‹ä»¶è§£é‡Šï¼‰
-3. å½“å‰æœºåž‹å˜ä½“ä¿¡æ¯ï¼ˆ`vtol` / `mc` / `fw`ï¼‰
+1. ×îÐ¡ÈÎÎñµ¥Ôª£¨Minimum Task Unit£©
+   - ÔÚÒÑ½âÂëµÄµ¥´Î·ÉÐÐÈÕÖ¾Ê±¼äÖáÉÏ£¬Íê³É·ÉÐÐ½×¶Î·Ö¶ÎÓë¹Ø¼üÊÂ¼þË÷Òý£¬²¢¸ø³ö¿É¸´ÏÖµÄ·Ö¶Î¹æÔò¡£
+2. ºËÐÄÊäÈë£¨Inputs£©
+   - ÒÑ½âÂë½á¹¹»¯ÈÕÖ¾Êý¾Ý£¨ÖÁÉÙ°üº¬Ê±¼äÖáÓëºËÐÄ×´Ì¬/¿ØÖÆÐÅºÅ£©
+   - »úÐÍ±äÌåÐÅÏ¢£¨`vtol` / `mc` / `fw`£©
+   - ¿ÉÑ¡ `ulog` ÊÂ¼þÎÄ±¾»òÈÎÎñ±³¾°ËµÃ÷
+3. ºËÐÄÊä³ö£¨Outputs£©
+   - Ö÷½»¸¶¹¤¼þ£º`flight_phase_segments`
+   - ½×¶ÎÊ±¼äÖá¡¢¹Ø¼üÊÂ¼þË÷Òý¡¢·Ö¶ÎÒÀ¾ÝÓëÖÊÁ¿ÎÊÌâÁÐ±í
+   - ¹©ÐÔÄÜ·ÖÎöÊ¹ÓÃµÄÍÆ¼ö¹Û²ì´°¿ÚÓë×¢ÒâÊÂÏî
+4. Íê³ÉÅÐ¾Ý£¨Definition of Done, DoD£©
+   - ·Ö¶Î¹æÔò¿É¸´ÏÖ£¨×Ö¶Î¡¢ãÐÖµ¡¢Ìõ¼þÇå³þ£©
+   - VTOL ¹ý¶É¶ÎÓë·Ç VTOL ¹æÔò²»»ìÐ´
+   - ±ß½çÄ£ºýºÍÈ±Êý¾Ý¶Î±»ÏÔÊ½±ê×¢
+5. Êä³öÓïÑÔÔ¼¶¨£¨Language Convention£©
+   - Ä¬ÈÏÖÐÎÄÊä³ö£»×¨ÒµÊõÓïÊ×´Î³öÏÖ¸½Ó¢ÎÄ×¢ÊÍ£¨English Annotation£©¡£
+   - ±£Áô²ÎÊýÃû¡¢ÐÅºÅÃû¡¢½á¹¹ÌåÃû¡¢º¯ÊýÃûÔ­ÎÄ£¬±ÜÃâ·­ÒëÔì³ÉÆçÒå¡£
 
-## èšç„¦èŒƒå›´ï¼ˆåªåšè¿™äº›ï¼‰
+## Ç°ÖÃÊäÈë£¨ÀíÏë£©
 
-1. é£žè¡Œé˜¶æ®µåˆ’åˆ†ï¼ˆFlight Phase Segmentationï¼‰
-2. å…³é”®äº‹ä»¶ç´¢å¼•ï¼ˆè§£é”ã€æ¨¡å¼åˆ‡æ¢ã€è¿‡æ¸¡ã€å¼‚å¸¸ã€é™è½ç­‰ï¼‰
-3. åˆ†æ®µè´¨é‡è¯„ä¼°ï¼ˆæ•°æ®ç¼ºå¤±/çŠ¶æ€ä¸è¿žç»­ï¼‰
+1. ÒÑ½âÂë `mlog` Êý¾Ý£¨ÖÁÉÙ°üº¬ `FMS_Out`, `INS_Out`, `Control_Out`£©
+2. ¿ÉÑ¡ `ulog.txt`£¨ÓÃÓÚ¸¨ÖúÊÂ¼þ½âÊÍ£©
+3. µ±Ç°»úÐÍ±äÌåÐÅÏ¢£¨`vtol` / `mc` / `fw`£©
 
-## ä¸è´Ÿè´£
+## ¾Û½¹·¶Î§£¨Ö»×öÕâÐ©£©
 
-1. `mlog` äºŒè¿›åˆ¶è§£ç 
-2. æŽ§åˆ¶å‚æ•°è°ƒä¼˜å»ºè®®
-3. æ·±å…¥æŽ§åˆ¶å™¨æ ¹å› åˆ†æž
+1. ·ÉÐÐ½×¶Î»®·Ö£¨Flight Phase Segmentation£©
+2. ¹Ø¼üÊÂ¼þË÷Òý£¨½âËø¡¢Ä£Ê½ÇÐ»»¡¢¹ý¶É¡¢Òì³£¡¢½µÂäµÈ£©
+3. ·Ö¶ÎÖÊÁ¿ÆÀ¹À£¨Êý¾ÝÈ±Ê§/×´Ì¬²»Á¬Ðø£©
 
-## åˆ†æ®µä¼˜å…ˆä¿¡å·ï¼ˆFMT æŽ¨èï¼‰
+## ²»¸ºÔð
+
+1. `mlog` ¶þ½øÖÆ½âÂë
+2. ¿ØÖÆ²ÎÊýµ÷ÓÅ½¨Òé
+3. ÉîÈë¿ØÖÆÆ÷¸ùÒò·ÖÎö
+
+## ·Ö¶ÎÓÅÏÈÐÅºÅ£¨FMT ÍÆ¼ö£©
 
 1. `FMS_Out.status`
 2. `FMS_Out.state`
-3. `FMS_Out.ext_state`ï¼ˆVTOL é‡ç‚¹ï¼‰
+3. `FMS_Out.ext_state`£¨VTOL ÖØµã£©
 4. `FMS_Out.mode` / `FMS_Out.ctrl_mode`
 5. `Control_Out.actuator_cmd`
-6. `INS_Out` é«˜åº¦/é€Ÿåº¦/å§¿æ€å˜åŒ–
+6. `INS_Out` ¸ß¶È/ËÙ¶È/×ËÌ¬±ä»¯
 
-## æ‰§è¡Œæ­¥éª¤
+## Ö´ÐÐ²½Öè
 
-1. æ£€æŸ¥å…³é”®ä¿¡å·æ˜¯å¦å­˜åœ¨ã€æ—¶é—´è½´æ˜¯å¦å¯ç”¨ã€‚
-2. ç”¨ `FMS_Out` å­—æ®µå»ºç«‹ä¸»åˆ†æ®µï¼ˆæ¨¡å¼/çŠ¶æ€é©±åŠ¨ï¼‰ã€‚
-3. ç”¨ `INS_Out` ä¸Žæ‰§è¡Œå™¨è¾“å‡ºä¿®æ­£è¾¹ç•Œï¼ˆä¾‹å¦‚èµ·é£ž/ç€é™†çª—å£ï¼‰ã€‚
-4. å¯¹ VTOL æ—¥å¿—å•ç‹¬æ ‡å‡ºè¿‡æ¸¡æ®µï¼ˆ`ext_state` å˜åŒ–ï¼‰ã€‚
-5. å»ºç«‹äº‹ä»¶ç´¢å¼•è¡¨ï¼ˆtimestampã€äº‹ä»¶ç±»åž‹ã€è¯æ®ä¿¡å·ï¼‰ã€‚
+1. ¼ì²é¹Ø¼üÐÅºÅÊÇ·ñ´æÔÚ¡¢Ê±¼äÖáÊÇ·ñ¿ÉÓÃ¡£
+2. ÓÃ `FMS_Out` ×Ö¶Î½¨Á¢Ö÷·Ö¶Î£¨Ä£Ê½/×´Ì¬Çý¶¯£©¡£
+3. ÓÃ `INS_Out` ÓëÖ´ÐÐÆ÷Êä³öÐÞÕý±ß½ç£¨ÀýÈçÆð·É/×ÅÂ½´°¿Ú£©¡£
+4. ¶Ô VTOL ÈÕÖ¾µ¥¶À±ê³ö¹ý¶É¶Î£¨`ext_state` ±ä»¯£©¡£
+5. ½¨Á¢ÊÂ¼þË÷Òý±í£¨timestamp¡¢ÊÂ¼þÀàÐÍ¡¢Ö¤¾ÝÐÅºÅ£©¡£
 
-## è¾“å‡ºè¦æ±‚
+## Êä³öÒªÇó
 
-è‡³å°‘åŒ…å«ï¼š
+ÖÁÉÙ°üº¬£º
 
-1. é£žè¡Œé˜¶æ®µæ—¶é—´è½´ï¼ˆé˜¶æ®µåã€èµ·æ­¢æ—¶é—´ï¼‰
-2. å…³é”®äº‹ä»¶ç´¢å¼•ï¼ˆå«è¯æ®ä¿¡å·ï¼‰
-3. åˆ†æ®µä¾æ®è¯´æ˜Žï¼ˆå­—æ®µä¸Žé˜ˆå€¼/è§„åˆ™ï¼‰
-4. åˆ†æ®µè´¨é‡é—®é¢˜ï¼ˆç¼ºæ•°æ®ã€çŠ¶æ€è·³å˜ã€è¾¹ç•Œæ¨¡ç³Šï¼‰
-5. å¯¹åŽç»­æ€§èƒ½åˆ†æžçš„å»ºè®®è§‚å¯Ÿçª—å£
+1. ·ÉÐÐ½×¶ÎÊ±¼äÖá£¨½×¶ÎÃû¡¢ÆðÖ¹Ê±¼ä£©
+2. ¹Ø¼üÊÂ¼þË÷Òý£¨º¬Ö¤¾ÝÐÅºÅ£©
+3. ·Ö¶ÎÒÀ¾ÝËµÃ÷£¨×Ö¶ÎÓëãÐÖµ/¹æÔò£©
+4. ·Ö¶ÎÖÊÁ¿ÎÊÌâ£¨È±Êý¾Ý¡¢×´Ì¬Ìø±ä¡¢±ß½çÄ£ºý£©
+5. ¶ÔºóÐøÐÔÄÜ·ÖÎöµÄ½¨Òé¹Û²ì´°¿Ú
 
-## çºªå¾‹çº¦æŸ
+## ÉÏÏÂÓÎ½»½Ó£¨Artifact Handoff£©
 
-1. åˆ†æ®µè§„åˆ™è¦å¯å¤çŽ°ï¼ˆå†™æ¸…ç”¨å“ªäº›å­—æ®µå’Œé˜ˆå€¼/æ¡ä»¶ï¼‰ã€‚
-2. ä¸æŠŠæ€§èƒ½çŽ°è±¡å½“æˆåˆ†æ®µä¾æ®çš„å”¯ä¸€æ¥æºã€‚
-3. VTOL ä¸Žéž VTOL çš„è§„åˆ™åˆ†å¼€è¯´æ˜Žã€‚
+1. ÉÏÓÎÒÀÀµ£¨Upstream Dependencies£©
+   - `fmt-mlog-decoder` »òµÈÐ§½á¹¹»¯ÈÕÖ¾ÊäÈë
+   - `fmt-fms-state-machine-reader`£¨ÍÆ¼ö£¬ÓÃÓÚ×´Ì¬ÓïÒå£©
+2. ÏÂÓÎÊ¹ÓÃ·½£¨Downstream Consumers£©
+   - `fmt-control-performance-analyzer`
+   - `fmt-tuning-report-writer`
+   - `fmt-flight-control-param-optimizer`
+3. Ö÷½»¸¶¹¤¼þ£¨Primary Artifact£©
+   - `flight_phase_segments`
+   - ¹¤¼þÖÁÉÙ°üº¬£º·ÖÎö·¶Î§£¨scope£©¡¢¹Ø¼üÊÂÊµ£¨facts£©¡¢¹Ø¼üÍÆ¶Ï£¨inferences£©¡¢Ö¤¾ÝË÷Òý£¨evidence index£©¡¢È±¿ÚÇåµ¥£¨gaps£©¡¢ÏÂÓÎÊäÈë½¨Òé£¨next skill inputs£©¡£
+4. ¹²Ïí¹æ·¶£¨Shared Contracts£©
+   - ²Î¿¼ `fmt/_meta/first-principles-skill-contract.md`
+   - ²Î¿¼ `fmt/_meta/artifact-handoff-contract.md`
+
+## ÖÊÁ¿ÃÅ½û£¨Quality Gates£©
+
+1. ±Ø¹ýÃÅ½û£¨Mandatory Gates£©
+   - ±ß½çÃÅ½û£¨Boundary Purity£©£º²»Êä³ö³¬³ö±¾¼¼ÄÜÖ°ÔðµÄÈ·¶¨ÐÔ½áÂÛ¡£
+   - Ö¤¾ÝÃÅ½û£¨Evidence Traceability£©£º¹Ø¼ü½áÂÛ±ØÐëÄÜ»ØÁ´µ½´úÂëÂ·¾¶ÐÐºÅ»òÈÕÖ¾Ê±¼ä¶Î¡£
+   - ±äÌåÃÅ½û£¨Variant Scope£©£ºÃ÷È· `vtol/mc/fw` ÊÊÓÃ·¶Î§£¬Î´ÖªÊ±±ê×¢ `unknown`¡£
+   - ½»½ÓÃÅ½û£¨Handoff Usability£©£ºÊä³ö¿É±»ÏÂÓÎ¼¼ÄÜÖ±½ÓÏû·Ñ£¬²»Ö»¸øÉ¢ÎÄÊ½ÃèÊö¡£
+   - ·Ö¶ÎÃÅ½û£ºÃ¿¸ö¹Ø¼ü½×¶Î±ß½ç±ØÐë¶ÔÓ¦Ö¤¾ÝÐÅºÅ»ò×´Ì¬×Ö¶Î±ä»¯¡£
+2. ×Ô¼ì½¨Òé£¨Self Check£©
+   - ¿ÉÊ¹ÓÃ `fmt/_meta/quality-scorecard.md` ¶Ô±¾´ÎÊä³ö½øÐÐ¿ìËÙ´ò·Ö£¨ÖÁÉÙ¼ì²é IO ÆõÔ¼¡¢Ö¤¾Ý¡¢½µ¼¶²ßÂÔ£©¡£
+
+## Ê§°ÜÓë½µ¼¶²ßÂÔ£¨Failure / Fallback£©
+
+1. ÊäÈë²»×ã´¦Àí
+   - È±Ê§ `FMS_Out` Ê±£º¿ÉÓÃ `INS_Out` + Ö´ÐÐÆ÷ÐÅºÅ×ö½üËÆ·Ö¶Î£¬µ«±ØÐë½µ¼¶ÖÃÐÅ¶È
+   - Ê±¼äÖá²»Á¬ÐøÊ±£º·Ö¶Î½á¹û°´Á¬ÐøÆ¬¶Î·Ö±ðÊä³ö£¬²»¸øÈ«¾ÖÁ¬Ðø½áÂÛ
+2. Êä³ö½µ¼¶ÒªÇó
+   - ½µ¼¶Êä³öÊ±±ØÐëÏÔÊ½±ê×¢ÊÜÓ°Ïì½áÂÛ¡¢ÊÜÓ°Ïì·¶Î§ÓëÖÃÐÅ¶È±ä»¯¡£
+   - ½µ¼¶²»µÈÓÚÌø²½£»²»µÃÔ½¹ý±¾¼¼ÄÜÖ°ÔðÖ±½Ó¸øÏÂÓÎ×îÖÕ½áÂÛ¡£
+
+## references/ Ê¹ÓÃ½¨Òé
+
+1. ¿ìËÙÊä³öÊ±£¬ÏÈ¼ÓÔØ `references/output-template.md` ×÷Îª¹Ç¼Ü£¬±ÜÃâÒÅÂ©½»½Ó×Ö¶Î¡£
+2. ÕýÊ½½»¸¶Ç°£¬¼ÓÔØ `references/checklist.md` ×ö±ß½ç¡¢Ö¤¾Ý¡¢½µ¼¶²ßÂÔ¸´ºË¡£
+3. ×¨ÏîÌáÊ¾£º½øÐÐ½×¶Î»®·ÖÊ±ÏÈ°´Ä£°å¹Ì»¯¹æÔò£»½»¸¶Ç°ÓÃÇåµ¥¸´ºË¿É¸´ÏÖÐÔºÍ±ß½çÖ¤¾Ý¡£
+
+## ¼ÍÂÉÔ¼Êø
+
+1. ·Ö¶Î¹æÔòÒª¿É¸´ÏÖ£¨Ð´ÇåÓÃÄÄÐ©×Ö¶ÎºÍãÐÖµ/Ìõ¼þ£©¡£
+2. ²»°ÑÐÔÄÜÏÖÏóµ±³É·Ö¶ÎÒÀ¾ÝµÄÎ¨Ò»À´Ô´¡£
+3. VTOL Óë·Ç VTOL µÄ¹æÔò·Ö¿ªËµÃ÷¡£
