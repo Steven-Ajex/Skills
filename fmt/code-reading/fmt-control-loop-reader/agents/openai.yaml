@@ -1,0 +1,4 @@
+interface:
+  display_name: "FMT Control Loop Reader"
+  short_description: "FMT control loop and data-path code reading skill"
+  default_prompt: "Read FMT scheduler and sensor-to-controller closed-loop path and explain module boundaries."

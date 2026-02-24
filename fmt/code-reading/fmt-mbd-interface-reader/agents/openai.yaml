@@ -1,0 +1,4 @@
+interface:
+  display_name: "FMT MBD Interface Reader"
+  short_description: "FMT MBD interface and generated-code boundary reading skill"
+  default_prompt: "Read FMT interface-layer and generated control-law code boundaries, parameters, and bus mappings."

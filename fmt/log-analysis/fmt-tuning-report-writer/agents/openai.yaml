@@ -1,0 +1,4 @@
+interface:
+  display_name: "FMT Tuning Report Writer"
+  short_description: "FMT tuning report and flight-test card synthesis skill"
+  default_prompt: "Generate a structured FMT flight control tuning report and next-flight validation plan."

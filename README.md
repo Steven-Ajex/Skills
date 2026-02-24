@@ -30,12 +30,42 @@
 - 专业术语首次出现附英文注释
 - 默认深度版分析结构（含不确定项与需确认问题）
 
+## 领域技能库
+
+### `fmt/`（FMT 飞控开发技能库）
+
+用于 `FMT-Firmware` 相关的代码理解、日志解码、飞行日志分析、控制参数优化等任务。
+
+特点：
+
+- 按“原子技能 + 编排技能”组织
+- 支持选择性安装单个技能
+- 便于后续持续扩展（例如 VTOL 过渡段专项分析、故障事件分析）
+
+入口文档：
+
+- `fmt/README.md`
+- `fmt/_meta/split-analysis.md`
+- `fmt/_meta/repo-management.md`
+
 ## 安装到 Codex（本地）
 
 将技能目录复制到本机 Codex skills 路径（通常是 `~/.codex/skills/public/`）：
 
 ```powershell
 Copy-Item -Recurse -Force .\code-architecture-reader $HOME\.codex\skills\public\
+```
+
+安装 FMT 原子技能示例：
+
+```powershell
+Copy-Item -Recurse -Force .\fmt\code-reading\fmt-control-loop-reader $HOME\.codex\skills\public\
+```
+
+安装 FMT 编排技能示例：
+
+```powershell
+Copy-Item -Recurse -Force .\fmt\workflows\fmt-flight-control-param-optimizer $HOME\.codex\skills\public\
 ```
 
 如果你的 Codex 使用其他 skills 根目录，请改为对应路径。
@@ -53,6 +83,12 @@ Copy-Item -Recurse -Force .\code-architecture-reader $HOME\.codex\skills\public\
 ```powershell
 git clone https://github.com/Steven-Ajex/Skills.git
 Copy-Item -Recurse -Force .\Skills\code-architecture-reader $HOME\.codex\skills\public\
+```
+
+FMT 技能示例（选择性复制）：
+
+```powershell
+Copy-Item -Recurse -Force .\Skills\fmt\workflows\fmt-flight-control-param-optimizer $HOME\.codex\skills\public\
 ```
 
 ## 维护约定

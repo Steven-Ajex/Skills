@@ -1,0 +1,4 @@
+interface:
+  display_name: "FMT Mlog Decoder"
+  short_description: "FMT mlog binary schema extraction and decoding workflow skill"
+  default_prompt: "Decode FMT mlog binary logs by parsing headers, bus schemas, and message streams."

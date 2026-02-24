@@ -1,0 +1,4 @@
+interface:
+  display_name: "FMT Flight Control Param Optimizer"
+  short_description: "FMT end-to-end code-to-log tuning workflow orchestration skill"
+  default_prompt: "Coordinate FMT code reading, logging understanding, flight log analysis, and parameter tuning recommendations."

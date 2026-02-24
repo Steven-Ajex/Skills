@@ -1,0 +1,4 @@
+interface:
+  display_name: "FMT Control Performance Analyzer"
+  short_description: "FMT control response and tuning-evidence analysis skill"
+  default_prompt: "Analyze decoded and segmented FMT flight logs for control performance symptoms, evidence, and candidate root causes."

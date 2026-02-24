@@ -1,0 +1,4 @@
+interface:
+  display_name: "FMT Logging Pipeline Reader"
+  short_description: "FMT mlog and ulog embedded logging pipeline reading skill"
+  default_prompt: "Read FMT mlog and ulog recording flow, trigger conditions, and storage behavior."

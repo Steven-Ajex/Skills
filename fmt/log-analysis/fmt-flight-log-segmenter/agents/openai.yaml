@@ -1,0 +1,4 @@
+interface:
+  display_name: "FMT Flight Log Segmenter"
+  short_description: "FMT flight phase segmentation and event indexing analysis skill"
+  default_prompt: "Segment decoded FMT flight logs into phases and identify key events using FMS and control signals."

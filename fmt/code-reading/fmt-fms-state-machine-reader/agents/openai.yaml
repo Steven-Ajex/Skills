@@ -1,0 +1,4 @@
+interface:
+  display_name: "FMT FMS State Machine Reader"
+  short_description: "FMT FMS mode and state-machine logic reading skill"
+  default_prompt: "Read FMT FMS state and mode transition logic, triggers, and outputs with code evidence."
