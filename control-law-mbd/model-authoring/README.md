@@ -13,18 +13,18 @@
 
 ## 2. 规划 skill 列表
 
-| Skill 名 | 最小任务单元 | 主要工件 |
-| --- | --- | --- |
-| `clm-control-law-pattern-author` | 输出标准控制律结构建模骨架与参数清单 | `control_law_pattern_skeleton` |
-| `clm-codegen-compliance-refactor` | 按高完整性与代码生成约束重构既有模型 | `compliance_refactor_diff` |
+| Skill 名 | 最小任务单元 | 主要工件 | 状态 |
+| --- | --- | --- | --- |
+| `clm-control-law-pattern-author` | 输出标准控制律结构建模骨架与参数清单 | `control_law_pattern_skeleton` | 已落地 |
+| `clm-codegen-compliance-refactor` | 把上游 finding 聚合为模型层重构方案 | `compliance_refactor_diff` | 已落地 |
 
-后续候选（Backlog）：
+后续候选(Backlog):
 
-- `clm-anti-windup-author`
-- `clm-gain-scheduling-author`
-- `clm-fixed-point-refactor`
+- `clm-anti-windup-author`(进一步专精)
+- `clm-gain-scheduling-author`(进一步专精)
+- `clm-fixed-point-refactor`(进一步专精)
 
-> 当前为 placeholder。具体 skill 落地前请先对照 `../_meta/first-principles-skill-contract.md`。
+> 两个 skill 均**只产出方案 / 骨架**,不直接修改模型。施工由工程师按方案手工或脚本化实施。
 
 ## 3. 不负责（Out of Scope）
 

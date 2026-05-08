@@ -1,0 +1,4 @@
+interface:
+  display_name: "Control-Law-MBD: Control Law Pattern Author"
+  short_description: "Author Simulink modeling skeletons for standard control-law patterns (PID / LQR / gain-scheduling / anti-windup / filtering / saturation) with parameter object declarations and integration steps"
+  default_prompt: "Given a control-law pattern selection, target path, sample time, and numeric form (float/fixed), produce a `control_law_pattern_skeleton` artifact: pattern rationale, port contract, main topology (block list + signal connections), Simulink.Parameter declarations (type + default placeholder + min/max placeholder + storage class), sample time / atomicity policy, anti-windup scheme (if integrator present), and step-by-step integration."

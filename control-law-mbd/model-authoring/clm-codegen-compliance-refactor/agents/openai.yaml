@@ -1,0 +1,4 @@
+interface:
+  display_name: "Control-Law-MBD: Codegen Compliance Refactor"
+  short_description: "Aggregate upstream findings (config / coverage / storage class / pattern risks) and produce a model-level refactor plan with steps, risk register, and prioritized backlog"
+  default_prompt: "Aggregate upstream findings from coder_config_review / coverage_gap_report / storage_class_governance / control_law_pattern_skeleton risk register and produce a `compliance_refactor_diff` artifact: per-finding decision (refactor/accept-residual/defer/cannot-fix-in-model), minimal refactor steps, risk and impact, conflicts with existing structure, and prioritized backlog."

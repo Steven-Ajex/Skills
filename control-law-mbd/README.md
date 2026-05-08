@@ -105,6 +105,6 @@ control-law-mbd/
 - [x] 第三批原子技能:`clm-data-dictionary-reader`、`clm-test-harness-builder`
 - [x] 第四批原子技能:`clm-coverage-gap-analyzer`、`clm-pil-hil-replay-analyzer`(Stage 4 Verification 三角齐)
 - [x] 第五批原子技能:`clm-storage-class-governor`(Stage 3 Codegen Bridge 三角齐)、`clm-requirement-trace-reader`(Stage 1 Model Reading 四角齐)
-- [ ] 待补:`model-authoring/` 全部 skill(`clm-control-law-pattern-author`、`clm-codegen-compliance-refactor`),解锁 Stage 2
+- [x] 第六批原子技能:`clm-control-law-pattern-author`、`clm-codegen-compliance-refactor`(Stage 2 Model Authoring 解锁)
 
-> Stage 1 / 3 / 4 + Workflow 全部齐备;仅余 Stage 2 Model Authoring 未落地。
+> 五大阶段全部齐备:Stage 1(4 个)+ Stage 2(2 个)+ Stage 3(3 个)+ Stage 4(3 个)+ Workflow(1 个),共 13 个 skill。`clm-control-law-mbd-pipeline` 现可端到端编排所有阶段而无 `blocked` 标记。
