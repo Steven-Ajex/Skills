@@ -1,0 +1,4 @@
+interface:
+  display_name: "Control-Law-MBD: Stateflow Semantics Reader"
+  short_description: "Read-only Stateflow chart semantics skill: state hierarchy, transitions, events, action execution order, data scope"
+  default_prompt: "Read the given Stateflow chart and produce a `stateflow_semantics` artifact: state hierarchy with Decomposition, transition table, event list, action execution order, data scope, and at least one full state-switch path with evidence."

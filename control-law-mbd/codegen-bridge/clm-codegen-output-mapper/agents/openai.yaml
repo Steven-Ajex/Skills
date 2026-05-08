@@ -1,0 +1,4 @@
+interface:
+  display_name: "Control-Law-MBD: Codegen Output Mapper"
+  short_description: "Read-only model-to-code mapping skill: subsystem ↔ generated function, parameter ↔ global variable, bus ↔ struct, plus bridge-layer touchpoints"
+  default_prompt: "Map the given Simulink model to its Embedded Coder generated code and produce a `codegen_output_map` artifact: file role map, Step Function entries, subsystem/parameter/bus mappings with evidence, and (if provided) bridge-layer touchpoints."
