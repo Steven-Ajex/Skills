@@ -16,7 +16,7 @@ Embedded Coder 自动代码生成与**模型 ↔ 手写桥接层**对接类原�
 | --- | --- | --- | --- |
 | `clm-embedded-coder-config-reviewer` | 审查 Embedded Coder 配置与代码生成诊断 | `coder_config_review` | 已落地 |
 | `clm-codegen-output-mapper` | 建立模型对象 ↔ 生成代码的映射,识别桥接层契合点 | `codegen_output_map` | 已落地 |
-| `clm-storage-class-governor` | 治理参数/信号/Bus 的存储类、命名、标定一致性 | `storage_class_governance` | 待建 |
+| `clm-storage-class-governor` | 治理参数/信号/Bus 的存储类、命名、标定一致性 | `storage_class_governance` | 已落地 |
 
 后续候选（Backlog）：
 

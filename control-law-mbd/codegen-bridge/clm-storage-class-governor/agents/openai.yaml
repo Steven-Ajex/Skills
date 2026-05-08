@@ -1,0 +1,4 @@
+interface:
+  display_name: "Control-Law-MBD: Storage Class Governor"
+  short_description: "Project-level Storage Class governance: per-object decisions (keep/adjust/rename/migrate), naming consistency, calibration accessibility, bridge-layer linkage audit"
+  default_prompt: "Given upstream data_dictionary_map / codegen_output_map / coder_config_review (and optionally FMT mbd_boundary_map), produce a `storage_class_governance` artifact: per-object governance decisions with impact and regression points, naming-consistency table, calibration accessibility table, and a prioritized refactor backlog."

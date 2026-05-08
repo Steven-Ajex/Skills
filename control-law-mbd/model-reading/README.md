@@ -20,7 +20,7 @@
 | `clm-simulink-model-reader` | 解读模型层级、子系统、信号流、采样时间 | `simulink_model_map` | 已落地 |
 | `clm-stateflow-semantics-reader` | 解读状态/转移/事件/动作执行顺序 | `stateflow_semantics` | 已落地 |
 | `clm-data-dictionary-reader` | 解读 `.sldd`、Bus、参数对象与作用域 | `data_dictionary_map` | 已落地 |
-| `clm-requirement-trace-reader` | 解读需求与模型/用例的双向追溯链 | `requirement_trace_map` | 待建 |
+| `clm-requirement-trace-reader` | 解读需求与模型/用例的双向追溯链 | `requirement_trace_map` | 已落地 |
 
 > 新增 skill 前请先对照 `../_meta/first-principles-skill-contract.md` 定义最小任务单元与工具上下文。
 

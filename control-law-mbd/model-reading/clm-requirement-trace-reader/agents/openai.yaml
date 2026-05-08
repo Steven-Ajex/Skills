@@ -1,0 +1,4 @@
+interface:
+  display_name: "Control-Law-MBD: Requirement Trace Reader"
+  short_description: "Read-only requirement-to-model-and-test traceability mapping with orphan and broken-link detection"
+  default_prompt: "Read the given requirement source (Simulink Requirements / ReqIF / DOORS export / etc.) and produce a `requirement_trace_map` artifact: requirement inventory, three-way trace matrix (requirement ↔ model object ↔ test case), reverse traceability against upstream model/test artifacts, and orphan / broken-link lists."
