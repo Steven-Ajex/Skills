@@ -1,0 +1,4 @@
+interface:
+  display_name: "Control-Law-MBD: Embedded Coder Config Reviewer"
+  short_description: "Embedded Coder configuration set audit skill (read-only) covering code interface / storage class / hardware / solver / optimization / diagnostics"
+  default_prompt: "Review the Embedded Coder configuration set of the given Simulink model and produce a `coder_config_review` artifact: per-item Current vs Expected vs Risk vs Fix table, with evidence and tool context."

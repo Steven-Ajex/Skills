@@ -1,0 +1,4 @@
+interface:
+  display_name: "Control-Law-MBD: Simulink Model Reader"
+  short_description: "Read-only Simulink model structure / signal flow / sample time / atomic subsystem mapping skill"
+  default_prompt: "Read the given Simulink model and produce a `simulink_model_map` artifact: subsystem hierarchy, signal flow, sample times, atomic vs virtual subsystem boundaries, and evidence index."

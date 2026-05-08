@@ -12,11 +12,11 @@ Embedded Coder 自动代码生成与**模型 ↔ 手写桥接层**对接类原�
 
 ## 2. 规划 skill 列表
 
-| Skill 名 | 最小任务单元 | 主要工件 |
-| --- | --- | --- |
-| `clm-embedded-coder-config-reviewer` | 审查 Embedded Coder 配置与代码生成诊断 | `coder_config_review` |
-| `clm-codegen-output-mapper` | 建立模型对象 ↔ 生成代码的映射,识别桥接层契合点 | `codegen_output_map` |
-| `clm-storage-class-governor` | 治理参数/信号/Bus 的存储类、命名、标定一致性 | `storage_class_governance` |
+| Skill 名 | 最小任务单元 | 主要工件 | 状态 |
+| --- | --- | --- | --- |
+| `clm-embedded-coder-config-reviewer` | 审查 Embedded Coder 配置与代码生成诊断 | `coder_config_review` | 已落地 |
+| `clm-codegen-output-mapper` | 建立模型对象 ↔ 生成代码的映射,识别桥接层契合点 | `codegen_output_map` | 待建 |
+| `clm-storage-class-governor` | 治理参数/信号/Bus 的存储类、命名、标定一致性 | `storage_class_governance` | 待建 |
 
 后续候选（Backlog）：
 

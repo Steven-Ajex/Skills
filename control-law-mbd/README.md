@@ -99,7 +99,8 @@ control-law-mbd/
 - [x] `_meta/artifact-handoff-contract.md`
 - [x] `_meta/quality-scorecard.md`
 - [x] 五大能力域子目录 placeholder（`model-reading/` / `model-authoring/` / `codegen-bridge/` / `verification/` / `workflows/`）
-- [ ] 首批原子技能：`clm-simulink-model-reader`、`clm-embedded-coder-config-reviewer`
+- [x] 首批原子技能：`clm-simulink-model-reader`(`model-reading/`)、`clm-embedded-coder-config-reviewer`(`codegen-bridge/`)
+- [ ] 第二批原子技能候选：`clm-stateflow-semantics-reader`、`clm-data-dictionary-reader`、`clm-codegen-output-mapper`、`clm-test-harness-builder`
 - [ ] 首个编排技能：`clm-control-law-mbd-pipeline`
 
-> 元文档已就绪,后续按上述路线图逐步落地原子 skill 与编排 skill。
+> 首批原子技能已就绪,可独立或组合使用;编排技能待第二批原子 skill 落地后再做闭环。
