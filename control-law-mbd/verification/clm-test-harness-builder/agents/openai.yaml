@@ -1,0 +1,4 @@
+interface:
+  display_name: "Control-Law-MBD: Test Harness Builder"
+  short_description: "Design Simulink Test harness and test case skeletons (MIL/SIL) with machine-checkable pass criteria and requirement-to-test traceability"
+  default_prompt: "Design a Simulink Test harness and test case set for the given subsystem/chart and produce a `test_harness_plan` artifact: harness structure, case table (equivalence / boundary / state-switch / fault-injection / baseline) with pass criteria, requirement-to-test matrix, and SIL/PIL readiness checklist."

@@ -12,20 +12,18 @@
 
 ## 2. 规划 skill 列表
 
-| Skill 名 | 最小任务单元 | 主要工件 |
-| --- | --- | --- |
-| `clm-test-harness-builder` | 从需求到 MIL/SIL 测试 harness 的落地方案 | `test_harness_plan` |
-| `clm-coverage-gap-analyzer` | Decision / Condition / MCDC 覆盖率缺口分析与补齐建议 | `coverage_gap_report` |
-| `clm-pil-hil-replay-analyzer` | PIL / HIL 回放数据对比与基线偏差识别 | `pil_hil_replay_findings` |
+| Skill 名 | 最小任务单元 | 主要工件 | 状态 |
+| --- | --- | --- | --- |
+| `clm-test-harness-builder` | 从需求到 MIL/SIL 测试 harness 的落地方案 | `test_harness_plan` | 已落地 |
+| `clm-coverage-gap-analyzer` | Decision / Condition / MCDC 覆盖率缺口分析与补齐建议 | `coverage_gap_report` | 待建 |
+| `clm-pil-hil-replay-analyzer` | PIL / HIL 回放数据对比与基线偏差识别 | `pil_hil_replay_findings` | 待建 |
 
-后续候选（Backlog）：
+后续候选(Backlog):
 
 - `clm-sldv-property-author`
 - `clm-polyspace-runtime-error-analyzer`
 - `clm-fault-injection-test-author`
-- `clm-flight-log-replay-bridge`（与 `fmt/log-analysis/*` 的衔接桥）
-
-> 当前为 placeholder。具体 skill 落地前请先对照 `../_meta/first-principles-skill-contract.md`。
+- `clm-flight-log-replay-bridge`(与 `fmt/log-analysis/*` 的衔接桥)
 
 ## 3. 不负责（Out of Scope）
 

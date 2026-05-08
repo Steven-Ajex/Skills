@@ -1,0 +1,4 @@
+interface:
+  display_name: "Control-Law-MBD: Data Dictionary Reader"
+  short_description: "Read-only Simulink Data Dictionary (.sldd) reader: reference hierarchy, object inventory, storage class, type chain, and model-vs-dictionary consistency"
+  default_prompt: "Read the given Simulink Data Dictionary and produce a `data_dictionary_map` artifact: reference hierarchy, Parameter / Signal / Bus / AliasType inventory with Storage Class, type chain, and (if a model is provided) reference consistency findings."
