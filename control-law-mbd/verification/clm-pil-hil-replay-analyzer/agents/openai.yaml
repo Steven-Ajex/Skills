@@ -1,0 +1,4 @@
+interface:
+  display_name: "Control-Law-MBD: PIL/HIL Replay Analyzer"
+  short_description: "Read-only PIL/HIL replay analysis: time alignment, signal comparison, pass-criterion evaluation, regression signals, and FMT cross-library handoff"
+  default_prompt: "Analyze the given PIL/HIL data against the baseline and produce a `pil_hil_replay_findings` artifact: time alignment with residual, per-criterion PASS/FAIL/NA evaluation, regression signal list, and (if FMT data is provided) cross-library findings."

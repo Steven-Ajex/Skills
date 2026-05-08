@@ -102,7 +102,8 @@ control-law-mbd/
 - [x] 首批原子技能:`clm-simulink-model-reader`、`clm-embedded-coder-config-reviewer`
 - [x] 第二批原子技能:`clm-stateflow-semantics-reader`、`clm-codegen-output-mapper`
 - [x] 首个编排技能:`clm-control-law-mbd-pipeline`
-- [x] 第三批原子技能:`clm-data-dictionary-reader`、`clm-test-harness-builder`(后者解锁 Pipeline Stage 4 Verification)
-- [ ] 待补:`clm-requirement-trace-reader`、`clm-storage-class-governor`、`clm-coverage-gap-analyzer`、`clm-pil-hil-replay-analyzer`、`model-authoring/` 全部 skill
+- [x] 第三批原子技能:`clm-data-dictionary-reader`、`clm-test-harness-builder`
+- [x] 第四批原子技能:`clm-coverage-gap-analyzer`、`clm-pil-hil-replay-analyzer`(Stage 4 Verification 三角齐,跨库 FMT 闭环就绪)
+- [ ] 待补:`clm-requirement-trace-reader`、`clm-storage-class-governor`、`model-authoring/` 全部 skill(Stage 2)
 
-> 编排技能已就绪。当前可独立完成 Stage 1 Model Reading(3 个 skill 已齐:Simulink/Stateflow/Dictionary)、Stage 3 Codegen Bridge(Config + Output Mapper)与 Stage 4 Verification(Test Harness 已就位)。
+> Stage 1 Model Reading(3 个)、Stage 3 Codegen Bridge(2 个)、Stage 4 Verification(3 个)、Workflow 均已齐;仅余 Stage 2 Model Authoring 与若干补强 skill 未落地。

@@ -15,8 +15,8 @@
 | Skill 名 | 最小任务单元 | 主要工件 | 状态 |
 | --- | --- | --- | --- |
 | `clm-test-harness-builder` | 从需求到 MIL/SIL 测试 harness 的落地方案 | `test_harness_plan` | 已落地 |
-| `clm-coverage-gap-analyzer` | Decision / Condition / MCDC 覆盖率缺口分析与补齐建议 | `coverage_gap_report` | 待建 |
-| `clm-pil-hil-replay-analyzer` | PIL / HIL 回放数据对比与基线偏差识别 | `pil_hil_replay_findings` | 待建 |
+| `clm-coverage-gap-analyzer` | Decision / Condition / MCDC 覆盖率缺口分析与补齐建议 | `coverage_gap_report` | 已落地 |
+| `clm-pil-hil-replay-analyzer` | PIL / HIL 回放数据对比与基线偏差识别 | `pil_hil_replay_findings` | 已落地 |
 
 后续候选(Backlog):
 

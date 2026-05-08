@@ -1,0 +1,4 @@
+interface:
+  display_name: "Control-Law-MBD: Coverage Gap Analyzer"
+  short_description: "Read-only coverage report analysis: Decision/Condition/MCDC gaps, classification (unreachable/unexercised/unstable/needs-refactor), and closure routing"
+  default_prompt: "Analyze the given coverage report and produce a `coverage_gap_report` artifact: Decision/Condition/MCDC breakdown, classified gap list, Coverage Filter audit, and closure routing back to test cases or model refactors."
