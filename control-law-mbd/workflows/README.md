@@ -14,16 +14,16 @@
 
 ## 2. 规划 skill 列表
 
-| Skill 名 | 最小任务单元 | 主要工件 |
-| --- | --- | --- |
-| `clm-control-law-mbd-pipeline` | 端到端：需求 → 模型解读 → 重构 → 代码生成 → 在环验证 → 部署交接 | 各阶段工件汇总 + `pipeline_status` |
+| Skill 名 | 最小任务单元 | 主要工件 | 状态 |
+| --- | --- | --- | --- |
+| `clm-control-law-mbd-pipeline` | 端到端:需求 → 模型解读 → 重构 → 代码生成 → 在环验证 → 部署交接 | `pipeline_status` + 各阶段原子工件汇总 | 已落地 |
 
-后续候选（Backlog）：
+后续候选(Backlog):
 
 - `clm-model-to-deploy-handoff`
-- `clm-mbd-regression-comparison`（多版本模型对比）
+- `clm-mbd-regression-comparison`(多版本模型对比)
 
-> 当前为 placeholder。具体 skill 落地前请先对照 `../_meta/first-principles-skill-contract.md` 第 4 节"编排技能边界规则"。
+> 编排技能严格只做顺序、门禁、汇总;阶段对应原子 skill 未落地时该阶段标记 `blocked`,本编排技能不"代行"原子 skill 的专业判断。
 
 ## 3. 不负责（Out of Scope）
 

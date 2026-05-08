@@ -1,0 +1,4 @@
+interface:
+  display_name: "Control-Law-MBD: Pipeline (Workflow)"
+  short_description: "End-to-end MBD workflow: orchestrates Model Reading → Model Authoring → Codegen Bridge → Verification → Deploy Handoff with stage gates and FMT cross-library handoff"
+  default_prompt: "Run the control-law MBD pipeline on the given task. Orchestrate atomic skills, enforce per-stage gate checks, summarize results in a `pipeline_status` artifact, and (if applicable) produce a `cross_library_handoff` to the FMT workflow."
