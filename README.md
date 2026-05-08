@@ -58,6 +58,19 @@
 - `fmt/_meta/split-analysis.md`
 - `fmt/_meta/repo-management.md`
 
+### `control-law-mbd/`（控制律 MBD 模型开发技能库）
+
+用于控制律设计与 MBD（Model-Based Design）模型开发场景：Simulink/Stateflow 建模、Embedded Coder 自动代码生成、MIL/SIL/PIL/HIL 在环验证等。
+
+定位：
+
+- 与 `fmt/` 形成上下游协作：本库聚焦“模型侧 + 自动生成”，`fmt/` 聚焦“嵌入式集成 + 飞行验证”
+- 当前为骨架阶段，子技能将按 `_meta/` 路线图逐步落地
+
+入口文档：
+
+- `control-law-mbd/README.md`
+
 ## 安装到 Codex（本地）
 
 将技能目录复制到本机 Codex skills 路径（通常是 `~/.codex/skills/public/`）：
