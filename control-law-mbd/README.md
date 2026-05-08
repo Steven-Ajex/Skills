@@ -75,12 +75,22 @@ control-law-mbd/
 - 优先保持 `SKILL.md` 简洁，把模板与详细资料放到各 skill 的 `references/`
 - 新增或修改技能后，运行仓库根的校验脚本（如有）
 
-## 路线图（Roadmap，初稿）
+## 入口文档
 
-- [ ] `_meta/split-analysis.md`：从“控制律设计 MBD 全流程”出发的能力拆分分析
-- [ ] `_meta/repo-management.md`：本库的命名、生命周期与版本管理规则
-- [ ] `_meta/first-principles-skill-contract.md`：原子 skill 的最小契约模板
+- `control-law-mbd/_meta/split-analysis.md`：从“控制律设计 MBD 全流程”出发的能力拆分分析
+- `control-law-mbd/_meta/repo-management.md`：本库的命名、生命周期与版本管理规则
+- `control-law-mbd/_meta/first-principles-skill-contract.md`：原子 skill 的第一性原理契约
+- `control-law-mbd/_meta/artifact-handoff-contract.md`：工件交接契约（含与 `fmt/` 库的跨库衔接）
+- `control-law-mbd/_meta/quality-scorecard.md`：质量评分卡
+
+## 路线图（Roadmap）
+
+- [x] `_meta/split-analysis.md`
+- [x] `_meta/repo-management.md`
+- [x] `_meta/first-principles-skill-contract.md`
+- [x] `_meta/artifact-handoff-contract.md`
+- [x] `_meta/quality-scorecard.md`
 - [ ] 首批原子技能：`clm-simulink-model-reader`、`clm-embedded-coder-config-reviewer`
 - [ ] 首个编排技能：`clm-control-law-mbd-pipeline`
 
-> 本 README 为占位骨架，具体 skill 将按上述路线图逐步落地。
+> 元文档已就绪,后续按上述路线图逐步落地原子 skill 与编排 skill。
