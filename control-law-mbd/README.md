@@ -16,15 +16,23 @@
 ```text
 control-law-mbd/
 ├─ README.md
-├─ _meta/                 # 拆分分析、管理规则、契约（非技能目录，待建）
-├─ model-reading/         # MBD 模型理解类原子技能（待建）
-├─ model-authoring/       # 控制律建模/重构类原子技能（待建）
-├─ codegen-bridge/        # 自动代码生成与接口桥接类原子技能（待建）
-├─ verification/          # MIL/SIL/PIL/HIL 验证类原子技能（待建）
-└─ workflows/             # 编排型技能（待建）
+├─ _meta/                 # 拆分分析、管理规则、契约（非技能目录）
+├─ model-reading/         # MBD 模型/字典/需求解读类原子技能
+├─ model-authoring/       # 控制律建模与重构类原子技能
+├─ codegen-bridge/        # 自动代码生成与桥接层对接类原子技能
+├─ verification/          # MIL/SIL/PIL/HIL 验证类原子技能
+└─ workflows/             # 端到端编排型技能
 ```
 
-> 当前为骨架阶段，子目录与具体 skill 将按需逐步引入。新增技能前请先沉淀拆分分析与契约文档至 `_meta/`。
+各能力域的职责、规划 skill 列表、触发边界与输出契约,见对应子目录的 `README.md`:
+
+- `model-reading/README.md`
+- `model-authoring/README.md`
+- `codegen-bridge/README.md`
+- `verification/README.md`
+- `workflows/README.md`
+
+> 子目录已建立 placeholder。具体 skill 将按路线图逐步落地;新增前请先对照 `_meta/first-principles-skill-contract.md` 与 `_meta/repo-management.md`。
 
 ## 规划中的能力域
 
@@ -90,6 +98,7 @@ control-law-mbd/
 - [x] `_meta/first-principles-skill-contract.md`
 - [x] `_meta/artifact-handoff-contract.md`
 - [x] `_meta/quality-scorecard.md`
+- [x] 五大能力域子目录 placeholder（`model-reading/` / `model-authoring/` / `codegen-bridge/` / `verification/` / `workflows/`）
 - [ ] 首批原子技能：`clm-simulink-model-reader`、`clm-embedded-coder-config-reviewer`
 - [ ] 首个编排技能：`clm-control-law-mbd-pipeline`
 

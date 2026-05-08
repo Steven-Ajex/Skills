@@ -1,0 +1,48 @@
+# Model Authoring（建模与重构）
+
+控制律 MBD **写操作类**原子技能（atomic skill）的容器目录。
+
+## 1. 职责（What）
+
+负责按标准控制律结构与代码生成约束**输出建模骨架或模型修改方案**,产物可被工程师直接采纳或作为重构 PR 的基础。
+
+适用对象：
+
+- 新建控制律子系统（PID / LQR / 增益调度 / Anti-Windup / 抗饱和 / 滤波 / 限幅）
+- 既有模型重构以满足高完整性建模规范、Model Advisor 检查、代码生成约束
+
+## 2. 规划 skill 列表
+
+| Skill 名 | 最小任务单元 | 主要工件 |
+| --- | --- | --- |
+| `clm-control-law-pattern-author` | 输出标准控制律结构建模骨架与参数清单 | `control_law_pattern_skeleton` |
+| `clm-codegen-compliance-refactor` | 按高完整性与代码生成约束重构既有模型 | `compliance_refactor_diff` |
+
+后续候选（Backlog）：
+
+- `clm-anti-windup-author`
+- `clm-gain-scheduling-author`
+- `clm-fixed-point-refactor`
+
+> 当前为 placeholder。具体 skill 落地前请先对照 `../_meta/first-principles-skill-contract.md`。
+
+## 3. 不负责（Out of Scope）
+
+- 单纯的模型解读与工件交接 → 走 `../model-reading/`
+- Embedded Coder 配置项调整 → 走 `../codegen-bridge/`
+- 测试用例与覆盖率改造 → 走 `../verification/`
+- 跨阶段串联（重构 → 代码生成 → 验证） → 走 `../workflows/`
+
+## 4. 触发边界（When NOT to use）
+
+- 没有明确的需求/性能目标作为重构依据(应先走需求追溯)
+- 缺少 `model-reading/` 的工件,导致重构无证据基础
+- 用户只想"看看模型",并未授权写操作
+
+## 5. 共同输出契约
+
+所有本目录 skill 的工件必须满足 `../_meta/artifact-handoff-contract.md` 的最低字段,并额外包含：
+
+- `pattern_choice` 或 `refactor_steps`：决策与步骤说明
+- `risk_register`：重构对功能/性能的潜在影响
+- `next_skill_inputs`：建议下游 `codegen-bridge/` 与 `verification/` 复用的字段
