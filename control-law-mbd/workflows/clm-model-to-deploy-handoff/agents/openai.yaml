@@ -1,0 +1,4 @@
+interface:
+  display_name: "Control-Law-MBD: Model-to-Deploy Handoff (Stage 5)"
+  short_description: "Stage 5 synthesis workflow: aggregate Stage 1-4 artifacts into an auditable model-to-deploy handoff package"
+  default_prompt: "Aggregate the given pipeline_status and Stage 1-4 artifacts into a `deploy_handoff_package`: version pin, compliance summary, verification summary, bridge-layer contract status, risk register with accept-residual log, regression points, artifact index, and role-tagged next actions. Do not draw a 'ready-to-ship' conclusion — leave that to the user."

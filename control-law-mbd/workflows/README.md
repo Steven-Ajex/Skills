@@ -17,10 +17,10 @@
 | Skill 名 | 最小任务单元 | 主要工件 | 状态 |
 | --- | --- | --- | --- |
 | `clm-control-law-mbd-pipeline` | 端到端:需求 → 模型解读 → 重构 → 代码生成 → 在环验证 → 部署交接 | `pipeline_status` + 各阶段原子工件汇总 | 已落地 |
+| `clm-model-to-deploy-handoff` | Stage 5 合成 workflow:聚合 Stage 1-4 工件为可审计的"模型 → 部署"交接包 | `deploy_handoff_package` | 已落地 |
 
 后续候选(Backlog):
 
-- `clm-model-to-deploy-handoff`
 - `clm-mbd-regression-comparison`(多版本模型对比)
 
 > 编排技能严格只做顺序、门禁、汇总;阶段对应原子 skill 未落地时该阶段标记 `blocked`,本编排技能不"代行"原子 skill 的专业判断。
