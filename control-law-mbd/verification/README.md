@@ -19,12 +19,12 @@
 | `clm-pil-hil-replay-analyzer` | PIL / HIL 回放数据对比与基线偏差识别 | `pil_hil_replay_findings` | 已落地 |
 
 | `clm-flight-log-replay-bridge` | 反向跨库桥:FMT 飞行日志 → MIL/SIL/PIL/HIL 回放激励数据集 | `flight_log_replay_dataset` | 已落地 |
+| `clm-fault-injection-test-author` | 故障注入测试设计:故障矩阵 + 安全等级覆盖 + bumpless 复位 | `fault_injection_test_plan` | 已落地 |
 
 后续候选(Backlog):
 
 - `clm-sldv-property-author`
 - `clm-polyspace-runtime-error-analyzer`
-- `clm-fault-injection-test-author`
 
 ## 3. 不负责（Out of Scope）
 

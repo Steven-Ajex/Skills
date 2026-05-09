@@ -1,0 +1,4 @@
+interface:
+  display_name: "Control-Law-MBD: Fault Injection Test Author"
+  short_description: "Design fault-injection tests from FMEA/HARA/FTA outputs: per-fault injection point, mode, trigger, expected degradation, machine-checkable pass criteria, reset strategy"
+  default_prompt: "Given a fault list (from FMEA/HARA/FTA) plus subsystem under test, produce a `fault_injection_test_plan` artifact: fault matrix (six-field rows), fault-to-requirement mapping, safety-level coverage, and explicit boundary against the regular test_harness_plan. Pass criteria must be machine-checkable; reset strategy must be explicit."

@@ -1,0 +1,4 @@
+interface:
+  display_name: "Control-Law-MBD: Gain Scheduling Author"
+  short_description: "Specialized gain-scheduling extension for existing PID/LQR/state-feedback patterns: scheduling variables, grid, lookup structure, interpolation, bumpless switching, MIMO handling"
+  default_prompt: "Given a base pattern (PID/LQR/...) plus scheduling variables and operating grid, produce a `gain_scheduling_skeleton` artifact: scheduling variable declarations, grid definition, lookup structure (1-D/N-D), interpolation + extrapolation strategy, bumpless transfer mechanism, MIMO handling, connection diff to base pattern, Simulink.LookupTable declarations with placeholder data, and risk register."
