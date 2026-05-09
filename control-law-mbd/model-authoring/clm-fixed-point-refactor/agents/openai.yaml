@@ -1,0 +1,4 @@
+interface:
+  display_name: "Control-Law-MBD: Fixed-Point Refactor"
+  short_description: "Float → fixed-point refactor planner: per-signal/parameter Q-format selection, overflow/quantization risk register, anti-windup adjustments, and verification steps"
+  default_prompt: "Given a floating-point model + target hardware + range data, produce a `fixed_point_refactor_plan` artifact: per-signal Q-format (WL/FL/Signed) with rationale, overflow/saturation/quantization risk register, scaling suggestions, AW fixed-point adjustments (if integrators), and validation steps."

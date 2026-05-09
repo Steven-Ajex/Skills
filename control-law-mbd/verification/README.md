@@ -18,12 +18,13 @@
 | `clm-coverage-gap-analyzer` | Decision / Condition / MCDC 覆盖率缺口分析与补齐建议 | `coverage_gap_report` | 已落地 |
 | `clm-pil-hil-replay-analyzer` | PIL / HIL 回放数据对比与基线偏差识别 | `pil_hil_replay_findings` | 已落地 |
 
+| `clm-flight-log-replay-bridge` | 反向跨库桥:FMT 飞行日志 → MIL/SIL/PIL/HIL 回放激励数据集 | `flight_log_replay_dataset` | 已落地 |
+
 后续候选(Backlog):
 
 - `clm-sldv-property-author`
 - `clm-polyspace-runtime-error-analyzer`
 - `clm-fault-injection-test-author`
-- `clm-flight-log-replay-bridge`(与 `fmt/log-analysis/*` 的衔接桥)
 
 ## 3. 不负责（Out of Scope）
 

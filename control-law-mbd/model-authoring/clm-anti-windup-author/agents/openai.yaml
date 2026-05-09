@@ -1,0 +1,4 @@
+interface:
+  display_name: "Control-Law-MBD: Anti-Windup Author"
+  short_description: "Specialized anti-windup design for existing integrator-based controllers: scheme choice (back-calc/conditional/clamping), Kt derivation, MIMO handling, performance prediction, connection diff"
+  default_prompt: "Given an existing integrator-based controller and saturation constraints, produce an `anti_windup_design` artifact: scheme rationale, Kt derivation method with placeholder range, connection diff to existing structure, MIMO handling (if multi-channel), and performance prediction."

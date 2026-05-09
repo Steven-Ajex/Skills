@@ -1,0 +1,4 @@
+interface:
+  display_name: "Control-Law-MBD: Flight Log Replay Bridge"
+  short_description: "Reverse cross-library bridge: convert FMT decoded flight logs into MIL/SIL/PIL/HIL replay stimulus datasets with timebase, signal mapping, unit consistency, and variant handling"
+  default_prompt: "Given FMT mlog_decode_summary (and flight_phase_segments if available) plus model-side codegen_output_map, produce a `flight_log_replay_dataset` artifact: timebase alignment, signal name mapping (FMT ↔ model side), unit consistency check, variant declaration, phase index with scenario tagging, and feed-in format selection — both firmware_context and tool_context preserved."

@@ -17,12 +17,13 @@
 | --- | --- | --- | --- |
 | `clm-control-law-pattern-author` | 输出标准控制律结构建模骨架与参数清单 | `control_law_pattern_skeleton` | 已落地 |
 | `clm-codegen-compliance-refactor` | 把上游 finding 聚合为模型层重构方案 | `compliance_refactor_diff` | 已落地 |
+| `clm-anti-windup-author` | 抗饱和(AW)专项设计:选型 + Kt 推导 + MIMO 处置 + 性能预测 | `anti_windup_design` | 已落地 |
+| `clm-fixed-point-refactor` | 浮点 → 定点重构方案:Q 格式 + 风险登记 + 验证步骤 | `fixed_point_refactor_plan` | 已落地 |
 
 后续候选(Backlog):
 
-- `clm-anti-windup-author`(进一步专精)
 - `clm-gain-scheduling-author`(进一步专精)
-- `clm-fixed-point-refactor`(进一步专精)
+- `clm-state-observer-author`(进一步专精)
 
 > 两个 skill 均**只产出方案 / 骨架**,不直接修改模型。施工由工程师按方案手工或脚本化实施。
 

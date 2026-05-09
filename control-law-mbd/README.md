@@ -106,5 +106,7 @@ control-law-mbd/
 - [x] 第四批原子技能:`clm-coverage-gap-analyzer`、`clm-pil-hil-replay-analyzer`(Stage 4 Verification 三角齐)
 - [x] 第五批原子技能:`clm-storage-class-governor`(Stage 3 Codegen Bridge 三角齐)、`clm-requirement-trace-reader`(Stage 1 Model Reading 四角齐)
 - [x] 第六批原子技能:`clm-control-law-pattern-author`、`clm-codegen-compliance-refactor`(Stage 2 Model Authoring 解锁)
+- [x] 第七批专精技能:`clm-anti-windup-author`(AW 专项)、`clm-fixed-point-refactor`(浮点→定点)、`clm-flight-log-replay-bridge`(反向跨库桥 FMT→模型回放)
 
-> 五大阶段全部齐备:Stage 1(4 个)+ Stage 2(2 个)+ Stage 3(3 个)+ Stage 4(3 个)+ Workflow(1 个),共 13 个 skill。`clm-control-law-mbd-pipeline` 现可端到端编排所有阶段而无 `blocked` 标记。
+> 共 16 个 skill 落地:Stage 1(4)+ Stage 2(4)+ Stage 3(3)+ Stage 4(4)+ Workflow(1)。
+> 跨库双向闭环就绪:模型 → FMT 通过 `bridge_layer_contract`;FMT → 模型 通过 `flight_log_replay_dataset`。
