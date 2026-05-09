@@ -1,0 +1,4 @@
+interface:
+  display_name: "Control-Law-MBD: SLDV Property Author"
+  short_description: "Translate requirements / safety constraints into Simulink Design Verifier formal properties (Verification Subsystem) with assumptions, proof strategy, and test-objective coupling"
+  default_prompt: "Given a requirement/constraint list and target subsystem, produce an `sldv_property_set` artifact: per-property natural-language + formal expression + scope + expected outcome (proven/falsifiable_expected/undecided_acceptable), assumption table, proof strategy (inductive vs bounded with N rationale), and test objectives for falsifiable cases. Do NOT run SLDV; do NOT conclude proven/falsified."

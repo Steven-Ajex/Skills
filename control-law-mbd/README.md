@@ -108,7 +108,10 @@ control-law-mbd/
 - [x] 第五批原子技能:`clm-storage-class-governor`(Stage 3 Codegen Bridge 三角齐)、`clm-requirement-trace-reader`(Stage 1 Model Reading 四角齐)
 - [x] 第六批原子技能:`clm-control-law-pattern-author`、`clm-codegen-compliance-refactor`(Stage 2 Model Authoring 解锁)
 - [x] 第七批专精技能:`clm-anti-windup-author`(AW 专项)、`clm-fixed-point-refactor`(浮点→定点)、`clm-flight-log-replay-bridge`(反向跨库桥 FMT→模型回放)
-- [x] **端到端 Worked Example** 沉淀至 `_meta/worked-example-end-to-end.md`(VTOL 姿态环 AW 改造,串联全部 16 skill + 跨库 + 反馈环路)
+- [x] **端到端 Worked Example** 沉淀至 `_meta/worked-example-end-to-end.md`(VTOL 姿态环 AW 改造,串联全部 skill + 跨库 + 反馈环路)
+- [x] 第八批 Stage 5 + 写操作 skill:`clm-model-to-deploy-handoff`(Stage 5 合成 workflow)、`clm-fault-injection-test-author`、`clm-gain-scheduling-author`
+- [x] 第九批形式化验证对:`clm-sldv-property-author`、`clm-polyspace-runtime-error-analyzer`
 
-> 共 16 个 skill 落地:Stage 1(4)+ Stage 2(4)+ Stage 3(3)+ Stage 4(4)+ Workflow(1)。
+> 共 21 个 skill 落地:Stage 1(4)+ Stage 2(5)+ Stage 3(3)+ Stage 4(6)+ Workflow(2)。
 > 跨库双向闭环就绪:模型 → FMT 通过 `bridge_layer_contract`;FMT → 模型 通过 `flight_log_replay_dataset`。
+> Stage 5 已解锁,可端到端跑完 5 阶段无 `blocked` 标记。

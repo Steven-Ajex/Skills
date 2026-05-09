@@ -20,11 +20,12 @@
 
 | `clm-flight-log-replay-bridge` | 反向跨库桥:FMT 飞行日志 → MIL/SIL/PIL/HIL 回放激励数据集 | `flight_log_replay_dataset` | 已落地 |
 | `clm-fault-injection-test-author` | 故障注入测试设计:故障矩阵 + 安全等级覆盖 + bumpless 复位 | `fault_injection_test_plan` | 已落地 |
+| `clm-sldv-property-author` | SLDV 形式化属性集 + Assumption + 证明策略 + Test Objective 配套 | `sldv_property_set` | 已落地 |
+| `clm-polyspace-runtime-error-analyzer` | Polyspace 报告分析 + 模型侧根因反推 + 闭环路由 | `polyspace_runtime_error_findings` | 已落地 |
 
 后续候选(Backlog):
 
-- `clm-sldv-property-author`
-- `clm-polyspace-runtime-error-analyzer`
+- 暂无(verification 目录已 6 skill 齐备)
 
 ## 3. 不负责（Out of Scope）
 

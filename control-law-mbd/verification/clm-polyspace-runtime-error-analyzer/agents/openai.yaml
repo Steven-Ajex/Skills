@@ -1,0 +1,4 @@
+interface:
+  display_name: "Control-Law-MBD: Polyspace Runtime Error Analyzer"
+  short_description: "Read-only Polyspace report analysis: classify runtime errors (overflow / div-by-zero / OOB / uninitialized / dead code / concurrency), reverse-trace root cause to model side via codegen_output_map, and route findings to refactor-model / adjust-config / accept-residual / out-of-mbd-scope"
+  default_prompt: "Analyze the given Polyspace report against generated code, produce a `polyspace_runtime_error_findings` artifact: severity-distribution + per-finding (type/code-location/severity/model-side root cause/closure routing), Polyspace settings audit, and cross-skill associations (fixed-point / storage-class / SLDV). Reverse-trace via codegen_output_map; do not run Polyspace, do not modify files, do not conclude 'passed Polyspace gate'."
