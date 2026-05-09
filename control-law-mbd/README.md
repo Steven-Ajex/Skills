@@ -90,6 +90,7 @@ control-law-mbd/
 - `control-law-mbd/_meta/first-principles-skill-contract.md`：原子 skill 的第一性原理契约
 - `control-law-mbd/_meta/artifact-handoff-contract.md`：工件交接契约（含与 `fmt/` 库的跨库衔接）
 - `control-law-mbd/_meta/quality-scorecard.md`：质量评分卡
+- `control-law-mbd/_meta/worked-example-end-to-end.md`:**端到端 Worked Example**(VTOL 姿态环 AW 改造,演示 16 个 skill 串联 + 跨库双向闭环 + 反馈环路)— 推荐新使用者首读
 
 ## 路线图（Roadmap）
 
@@ -107,6 +108,7 @@ control-law-mbd/
 - [x] 第五批原子技能:`clm-storage-class-governor`(Stage 3 Codegen Bridge 三角齐)、`clm-requirement-trace-reader`(Stage 1 Model Reading 四角齐)
 - [x] 第六批原子技能:`clm-control-law-pattern-author`、`clm-codegen-compliance-refactor`(Stage 2 Model Authoring 解锁)
 - [x] 第七批专精技能:`clm-anti-windup-author`(AW 专项)、`clm-fixed-point-refactor`(浮点→定点)、`clm-flight-log-replay-bridge`(反向跨库桥 FMT→模型回放)
+- [x] **端到端 Worked Example** 沉淀至 `_meta/worked-example-end-to-end.md`(VTOL 姿态环 AW 改造,串联全部 16 skill + 跨库 + 反馈环路)
 
 > 共 16 个 skill 落地:Stage 1(4)+ Stage 2(4)+ Stage 3(3)+ Stage 4(4)+ Workflow(1)。
 > 跨库双向闭环就绪:模型 → FMT 通过 `bridge_layer_contract`;FMT → 模型 通过 `flight_log_replay_dataset`。
