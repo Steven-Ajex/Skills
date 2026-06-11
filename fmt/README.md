@@ -86,6 +86,7 @@ Copy-Item -Recurse -Force .\fmt\workflows\fmt-flight-control-param-optimizer $HO
 - `fmt/_meta/first-principles-skill-contract.md`
 - `fmt/_meta/artifact-handoff-contract.md`
 - `fmt/_meta/quality-scorecard.md`
+- `fmt/_meta/bsp-adaptation-guide.md`(新 BSP 适配信息清单 — 全新板 vs MCU 同参考板两种场景的输入需求与交付等级)
 
 ## 优化现有 Skill 的建议顺序（第一性原理）
 
