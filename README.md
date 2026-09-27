@@ -40,6 +40,22 @@
 - 需要提升子技能专精性和专业性
 - 需要为领域技能库建立长期可扩展的组织逻辑
 
+### `handoff-prompt-writer`
+
+会话交接提示词编写技能。当上下文接近上限、需要换新对话继续工作时，把当前工作状态压缩为一份自包含的交接提示词，让新会话不继承完整上下文也能无损接手。
+
+输出：
+
+- 可直接粘贴到新对话的交接提示词（轻量版 / 标准版）
+- 大型、多阶段任务的 `HANDOFF.md` 交接文件 + 简短引导提示词（完整版）
+
+特性：
+
+- 按“重新获取的代价”对信息分级，决定保留、改为指针还是丢弃
+- 先用脚本采集仓库客观状态，不凭记忆写状态
+- 保留失败尝试与用户原话要求，避免新会话重走老路或违反约束
+- 用“冷启动测试”作为交付门禁
+
 ## 领域技能库
 
 ### `fmt/`（FMT 飞控开发技能库）
@@ -64,6 +80,12 @@
 
 ```powershell
 Copy-Item -Recurse -Force .\code-architecture-reader $HOME\.codex\skills\public\
+```
+
+安装交接提示词技能示例：
+
+```powershell
+Copy-Item -Recurse -Force .\handoff-prompt-writer $HOME\.codex\skills\public\
 ```
 
 安装 FMT 原子技能示例：

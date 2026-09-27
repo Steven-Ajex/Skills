@@ -1,0 +1,4 @@
+interface:
+  display_name: "Handoff Prompt Writer"
+  short_description: "把当前会话的工作状态压缩为可在新对话中无损接手的交接提示词"
+  default_prompt: "为当前进行中的工作编写交接提示词：先采集仓库客观状态，再按信息价值分级提炼目标、约束、进度、决策、已排除路径和下一步，通过冷启动测试后，以可直接粘贴到新对话的形式交付。"
